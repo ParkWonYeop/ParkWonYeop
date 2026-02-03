@@ -56,7 +56,8 @@
 
 ## 📫 Contact & Links
 - [**Blog**](https://blog.wypark.me)
-- [**Git**](https://github.com/ParkWonYeop)
+- [**GitHub**](https://github.com/ParkWonYeop)
+- [**Gitea**](https://git.wypark.me/pwy9679)
 - **Email**: wyp9679@gmail.com
 
 <p align="center">
