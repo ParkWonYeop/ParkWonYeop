@@ -41,15 +41,6 @@
 
 ---
 
-## 🖥️ Homelab Architecture (Self-Hosting)
-현재 보고 계신 이 Gitea 인스턴스는 제 개인 홈서버에서 운영되고 있습니다.
-- **Server**: 8C 16T / RAM 32G
-- **Virtualization**: Proxmox VE (LXC 컨테이너 기반 Docker 운영)
-- **Network**: Cloudflare Tunnel 기반 보안 접속 환경 구축
-- **Storage**: SSD 기반 데이터 분리 및 백업 정책 자동화
-
----
-
 ## 📁 Key Projects
 
 ---
