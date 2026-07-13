@@ -30,7 +30,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           games: breakout
 
-      - name: Keep the contribution grass visible
+      - name: Simulate physical contribution respawns
         run: node scripts/restore-breakout-grass.mjs dist/breakout-contribution-graph.svg dist/breakout-contribution-graph-dark.svg
 
       - name: Publish generated SVGs
