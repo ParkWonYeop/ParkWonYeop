@@ -1,45 +1,70 @@
-# 👋 백엔드 개발자 박원엽입니다.
-
-<p align="left">
-  <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white">
-  <img src="https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white">
-  <img src="https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white">
-  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
-  <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
-  <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white">
-</p>
-
-## 🚀 About Me
-복잡한 문제를 직시하고 해결했을 때의 성취감을 바탕으로 새로운 도전을 즐기는 백엔드 개발자입니다. 신중하게 설계하고 망설임 없이 추진하는 행동력을 바탕으로 돌발 상황에 효과적으로 대응하며 애플리케이션의 안정성을 확보하는 데 기여합니다.
-
-- 🛠️ **핵심 역량**: 대용량 데이터 처리 최적화, 보안성 심의 대응 및 프레임워크 마이그레이션
-- 🖥️ **인프라**: Proxmox 기반 홈서버 운영 및 Docker 컨테이너 최적화
-
----
-
-## 🛠 Tech Stacks
-### Backend & Data
-- **Frameworks**: Spring Boot, MyBatis, NestJS, Node.js
-- **Database**: MySQL, MariaDB, Redis, MongoDB, ELK Stack
-- **Environment**: Linux (systemd), Docker & Docker Compose, Logstash
-
-### Dev & Tools
-- **Testing**: JUnit 기반 테스트 주도 개발 (TDD)
-- **Auth**: OAuth 2.0 기반 인증 시스템 구축 경험
-- **Communication**: REST API 설계 및 문서화 협업
-
----
-
-## 📁 Key Projects
-
----
-
-## 📫 Contact & Links
-- [**Blog**](https://blog.wypark.me)
-- [**GitHub**](https://github.com/ParkWonYeop)
-- [**Gitea**](https://git.wypark.me/pwy9679)
-- **Email**: wyp9679@gmail.com
+<div align="center">
+  <img src="./assets/hero.svg" width="100%" alt="Park Won Yeop — Backend Engineer" />
+</div>
 
 <p align="center">
-  "문제를 외면하지 않고 직시하며, 끊임없이 성장하는 개발자가 되겠습니다."
+  <a href="https://blog.wypark.me"><img src="https://img.shields.io/badge/BLOG-18181B?style=flat-square&logo=rss&logoColor=B6F13A" alt="Blog" /></a>
+  <a href="https://git.wypark.me/pwy9679"><img src="https://img.shields.io/badge/GITEA-18181B?style=flat-square&logo=gitea&logoColor=B6F13A" alt="Gitea" /></a>
+  <a href="mailto:wyp9679@gmail.com"><img src="https://img.shields.io/badge/EMAIL-18181B?style=flat-square&logo=gmail&logoColor=B6F13A" alt="Email" /></a>
+</p>
+
+## 00 / ABOUT
+
+> 복잡한 문제를 직시하고, 끝까지 해결해 안정적인 시스템으로 만드는 백엔드 개발자입니다.
+
+- **Performance** — 대용량 데이터 처리 흐름을 관찰하고 병목을 줄입니다.
+- **Modernization** — 레거시 시스템을 더 안전하고 유지보수하기 좋은 구조로 바꿉니다.
+- **Operations** — Proxmox 홈서버와 Docker 환경을 직접 운영하며 장애에 강한 서비스를 고민합니다.
+
+## 01 / TOOLBOX
+
+<p>
+  <sub><b>BACKEND</b></sub><br />
+  <img src="https://img.shields.io/badge/Java-18181B?style=flat-square&logo=openjdk&logoColor=B6F13A" alt="Java" />
+  <img src="https://img.shields.io/badge/Kotlin-18181B?style=flat-square&logo=kotlin&logoColor=B6F13A" alt="Kotlin" />
+  <img src="https://img.shields.io/badge/Python-18181B?style=flat-square&logo=python&logoColor=B6F13A" alt="Python" />
+  <img src="https://img.shields.io/badge/Spring_Boot-18181B?style=flat-square&logo=springboot&logoColor=B6F13A" alt="Spring Boot" />
+  <img src="https://img.shields.io/badge/MyBatis-18181B?style=flat-square&logoColor=B6F13A" alt="MyBatis" />
+  <img src="https://img.shields.io/badge/Node.js-18181B?style=flat-square&logo=nodedotjs&logoColor=B6F13A" alt="Node.js" />
+  <img src="https://img.shields.io/badge/NestJS-18181B?style=flat-square&logo=nestjs&logoColor=B6F13A" alt="NestJS" />
+</p>
+
+<p>
+  <sub><b>DATA</b></sub><br />
+  <img src="https://img.shields.io/badge/MySQL-18181B?style=flat-square&logo=mysql&logoColor=B6F13A" alt="MySQL" />
+  <img src="https://img.shields.io/badge/MariaDB-18181B?style=flat-square&logo=mariadb&logoColor=B6F13A" alt="MariaDB" />
+  <img src="https://img.shields.io/badge/Redis-18181B?style=flat-square&logo=redis&logoColor=B6F13A" alt="Redis" />
+  <img src="https://img.shields.io/badge/MongoDB-18181B?style=flat-square&logo=mongodb&logoColor=B6F13A" alt="MongoDB" />
+  <img src="https://img.shields.io/badge/Elasticsearch-18181B?style=flat-square&logo=elasticsearch&logoColor=B6F13A" alt="Elasticsearch" />
+</p>
+
+<p>
+  <sub><b>INFRA &amp; TOOLS</b></sub><br />
+  <img src="https://img.shields.io/badge/Docker-18181B?style=flat-square&logo=docker&logoColor=B6F13A" alt="Docker" />
+  <img src="https://img.shields.io/badge/Linux-18181B?style=flat-square&logo=linux&logoColor=B6F13A" alt="Linux" />
+  <img src="https://img.shields.io/badge/Proxmox-18181B?style=flat-square&logo=proxmox&logoColor=B6F13A" alt="Proxmox" />
+  <img src="https://img.shields.io/badge/Logstash-18181B?style=flat-square&logo=logstash&logoColor=B6F13A" alt="Logstash" />
+  <img src="https://img.shields.io/badge/Git-18181B?style=flat-square&logo=git&logoColor=B6F13A" alt="Git" />
+</p>
+
+## 02 / SELECTED BUILDS
+
+| Project | What I built | Stack |
+| :--- | :--- | :--- |
+| **[LibraryReservation_Kotlin](https://github.com/ParkWonYeop/LibraryReservation_Kotlin)** | JWT 인증, 예약 도메인, DB read/write routing을 갖춘 도서관 예약 API | `Kotlin` `Spring Boot` `JPA` |
+| **[dblab_springboot](https://github.com/ParkWonYeop/dblab_springboot)** | 이벤트 등록부터 참여, 리뷰, 알림까지 연결한 백엔드 서비스 | `Java` `Spring Boot` `MySQL` |
+| **[TddWeatherApi](https://github.com/ParkWonYeop/TddWeatherApi)** | 지역·날씨 API를 테스트 중심으로 설계한 서버 애플리케이션 | `TypeScript` `NestJS` `Jest` |
+
+## 03 / COMMIT TRAIL
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ParkWonYeop/ParkWonYeop/output/github-contribution-grid-snake-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/ParkWonYeop/ParkWonYeop/output/github-contribution-grid-snake.svg" />
+  <img src="https://raw.githubusercontent.com/ParkWonYeop/ParkWonYeop/output/github-contribution-grid-snake.svg" width="100%" alt="Contribution grid animation" />
+</picture>
+
+<br />
+
+<p align="center">
+  <sub>STAY CURIOUS · SHIP RELIABLE · KEEP IT SIMPLE</sub>
 </p>

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title description">
+  <title id="title">Park Won Yeop — Backend Engineer</title>
+  <desc id="description">A dark minimal profile banner with lime accents and geometric contribution squares.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#09090B" />
+      <stop offset="1" stop-color="#121714" />
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(1010 75) rotate(135) scale(390 310)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#B6F13A" stop-opacity="0.15" />
+      <stop offset="1" stop-color="#B6F13A" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#FFFFFF" stroke-opacity="0.045" stroke-width="1" />
+    </pattern>
+    <filter id="soft-glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="9" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <clipPath id="frame">
+      <rect x="1" y="1" width="1198" height="358" rx="24" />
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="360" fill="url(#background)" />
+    <rect width="1200" height="360" fill="url(#grid)" />
+    <rect width="1200" height="360" fill="url(#glow)" />
+
+    <path d="M0 306H1200" stroke="#FFFFFF" stroke-opacity="0.08" />
+    <path d="M889 0V360" stroke="#FFFFFF" stroke-opacity="0.08" />
+
+    <g transform="translate(52 45)">
+      <rect width="174" height="30" rx="15" fill="#B6F13A" />
+      <circle cx="17" cy="15" r="4" fill="#09090B" />
+      <text x="30" y="20" fill="#09090B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="1.4">BACKEND ENGINEER</text>
+    </g>
+
+    <text x="52" y="178" fill="#FAFAFA" font-family="Inter, Pretendard, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="82" font-weight="800" letter-spacing="-3.5">Park Won Yeop</text>
+    <text x="56" y="226" fill="#A1A1AA" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="18" letter-spacing="0.5">RELIABLE SYSTEMS · CLEAN DECISIONS · CALM OPERATIONS</text>
+
+    <g transform="translate(54 279)" fill="#D4D4D8" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="600" letter-spacing="1.2">
+      <text x="0" y="0">01  PERFORMANCE</text>
+      <text x="174" y="0">02  MODERNIZATION</text>
+      <text x="386" y="0">03  HOMELAB</text>
+    </g>
+
+    <g transform="translate(948 71) rotate(8)">
+      <rect x="0" y="0" width="116" height="116" rx="15" fill="none" stroke="#B6F13A" stroke-width="2" stroke-opacity="0.75" />
+      <rect x="29" y="29" width="116" height="116" rx="15" fill="#B6F13A" fill-opacity="0.07" stroke="#B6F13A" stroke-opacity="0.45" />
+      <rect x="58" y="58" width="116" height="116" rx="15" fill="#B6F13A" fill-opacity="0.04" stroke="#FFFFFF" stroke-opacity="0.18" />
+    </g>
+
+    <g transform="translate(915 274)" fill="#B6F13A">
+      <rect width="10" height="10" rx="2" opacity="0.2" />
+      <rect x="17" width="10" height="10" rx="2" opacity="0.35" />
+      <rect x="34" width="10" height="10" rx="2" opacity="0.55" />
+      <rect x="51" width="10" height="10" rx="2" opacity="0.8" />
+      <rect x="68" width="10" height="10" rx="2" filter="url(#soft-glow)" />
+    </g>
+
+    <text x="1148" y="326" text-anchor="end" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" letter-spacing="1.5">PWY / 2026</text>
+  </g>
+
+  <rect x="1" y="1" width="1198" height="358" rx="24" fill="none" stroke="#FFFFFF" stroke-opacity="0.12" stroke-width="2" />
+</svg>
