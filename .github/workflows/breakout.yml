@@ -1,0 +1,43 @@
+name: Generate contribution breakout
+
+on:
+  schedule:
+    - cron: "17 0 * * *"
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: contribution-breakout
+  cancel-in-progress: true
+
+jobs:
+  generate:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out profile source
+        uses: actions/checkout@v4
+
+      - name: Generate contribution breakout
+        uses: abozanona/pacman-contribution-graph@d40fb3b3cc8017d7bfe915391a36c10ceaf274f7
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          games: breakout
+
+      - name: Keep the contribution grass visible
+        run: node scripts/restore-breakout-grass.mjs dist/breakout-contribution-graph.svg dist/breakout-contribution-graph-dark.svg
+
+      - name: Publish generated SVGs
+        uses: crazy-max/ghaction-github-pages@v3.1.0
+        with:
+          target_branch: output
+          build_dir: dist
+          commit_message: "chore: refresh contribution breakout"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

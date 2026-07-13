@@ -55,12 +55,12 @@
 | **[blog_backend](https://github.com/ParkWonYeop/blog_backend)** | 콘텐츠·인증·통계와 Maia 체스 기능을 제공하는 실서비스 블로그 REST API | `Kotlin` `Spring Boot` `PostgreSQL` |
 | **[blog_frontend](https://github.com/ParkWonYeop/blog_frontend)** | Markdown 콘텐츠, 댓글, 체스와 관리자 도구를 갖춘 반응형 블로그 프론트엔드 | `TypeScript` `Next.js` `React` |
 
-## 03 / COMMIT TRAIL
+## 03 / COMMIT BREAKOUT
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ParkWonYeop/ParkWonYeop/output/github-contribution-grid-snake-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/ParkWonYeop/ParkWonYeop/output/github-contribution-grid-snake.svg" />
-  <img src="https://raw.githubusercontent.com/ParkWonYeop/ParkWonYeop/output/github-contribution-grid-snake.svg" width="100%" alt="Contribution grid animation" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ParkWonYeop/ParkWonYeop/output/breakout-contribution-graph-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/ParkWonYeop/ParkWonYeop/output/breakout-contribution-graph.svg" />
+  <img src="https://raw.githubusercontent.com/ParkWonYeop/ParkWonYeop/output/breakout-contribution-graph.svg" width="100%" alt="Contribution breakout animation with persistent grass" />
 </picture>
 
 <br />
