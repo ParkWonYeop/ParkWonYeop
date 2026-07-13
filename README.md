@@ -4,7 +4,6 @@
 
 <p align="center">
   <a href="https://blog.wypark.me"><img src="https://img.shields.io/badge/BLOG-18181B?style=flat-square&logo=rss&logoColor=B6F13A" alt="Blog" /></a>
-  <a href="https://git.wypark.me/pwy9679"><img src="https://img.shields.io/badge/GITEA-18181B?style=flat-square&logo=gitea&logoColor=B6F13A" alt="Gitea" /></a>
   <a href="mailto:wyp9679@gmail.com"><img src="https://img.shields.io/badge/EMAIL-18181B?style=flat-square&logo=gmail&logoColor=B6F13A" alt="Email" /></a>
 </p>
 
