@@ -51,19 +51,17 @@
 
 | Project | What I built | Stack |
 | :--- | :--- | :--- |
-| **[LibraryReservation_Kotlin](https://github.com/ParkWonYeop/LibraryReservation_Kotlin)** | JWT 인증, 예약 도메인, DB read/write routing을 갖춘 도서관 예약 API | `Kotlin` `Spring Boot` `JPA` |
-| **[dblab_springboot](https://github.com/ParkWonYeop/dblab_springboot)** | 이벤트 등록부터 참여, 리뷰, 알림까지 연결한 백엔드 서비스 | `Java` `Spring Boot` `MySQL` |
-| **[TddWeatherApi](https://github.com/ParkWonYeop/TddWeatherApi)** | 지역·날씨 API를 테스트 중심으로 설계한 서버 애플리케이션 | `TypeScript` `NestJS` `Jest` |
+| **[RVC-Learn-hub](https://github.com/ParkWonYeop/RVC-Learn-hub)** | 여러 GPU 서버의 RVC v1/v2 학습과 데이터셋·작업·모델을 중앙에서 관리하는 오케스트레이션 플랫폼 | `Python` `FastAPI` `Next.js` |
+| **[blog_backend](https://github.com/ParkWonYeop/blog_backend)** | 콘텐츠·인증·통계와 Maia 체스 기능을 제공하는 실서비스 블로그 REST API | `Kotlin` `Spring Boot` `PostgreSQL` |
+| **[blog_frontend](https://github.com/ParkWonYeop/blog_frontend)** | Markdown 콘텐츠, 댓글, 체스와 관리자 도구를 갖춘 반응형 블로그 프론트엔드 | `TypeScript` `Next.js` `React` |
 
-## 03 / ACTIVITY SKYLINE
+## 03 / COMMIT TRAIL
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/ParkWonYeop/ParkWonYeop/output/contribution-skyline.svg" width="100%" alt="Park Won Yeop's multi-year contribution skyline" />
-</p>
-
-<p align="center">
-  <sub>GITHUB-RECOGNIZED ACTIVITY · 2022 — NOW · AUTO REFRESHED</sub>
-</p>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ParkWonYeop/ParkWonYeop/output/github-contribution-grid-snake-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/ParkWonYeop/ParkWonYeop/output/github-contribution-grid-snake.svg" />
+  <img src="https://raw.githubusercontent.com/ParkWonYeop/ParkWonYeop/output/github-contribution-grid-snake.svg" width="100%" alt="Contribution grid animation" />
+</picture>
 
 <br />
 
