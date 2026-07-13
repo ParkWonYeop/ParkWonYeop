@@ -54,7 +54,7 @@
 | **[blog_backend](https://github.com/ParkWonYeop/blog_backend)** | 콘텐츠·인증·통계와 Maia 체스 기능을 제공하는 실서비스 블로그 REST API | `Kotlin` `Spring Boot` `PostgreSQL` |
 | **[blog_frontend](https://github.com/ParkWonYeop/blog_frontend)** | Markdown 콘텐츠, 댓글, 체스와 관리자 도구를 갖춘 반응형 블로그 프론트엔드 | `TypeScript` `Next.js` `React` |
 
-## 03 / COMMIT
+## 03 / CONTRIBUTIONS
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ParkWonYeop/ParkWonYeop/output/breakout-contribution-graph-dark.svg" />
