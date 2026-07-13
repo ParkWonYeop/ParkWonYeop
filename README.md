@@ -55,13 +55,15 @@
 | **[dblab_springboot](https://github.com/ParkWonYeop/dblab_springboot)** | 이벤트 등록부터 참여, 리뷰, 알림까지 연결한 백엔드 서비스 | `Java` `Spring Boot` `MySQL` |
 | **[TddWeatherApi](https://github.com/ParkWonYeop/TddWeatherApi)** | 지역·날씨 API를 테스트 중심으로 설계한 서버 애플리케이션 | `TypeScript` `NestJS` `Jest` |
 
-## 03 / COMMIT TRAIL
+## 03 / ACTIVITY SKYLINE
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ParkWonYeop/ParkWonYeop/output/github-contribution-grid-snake-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/ParkWonYeop/ParkWonYeop/output/github-contribution-grid-snake.svg" />
-  <img src="https://raw.githubusercontent.com/ParkWonYeop/ParkWonYeop/output/github-contribution-grid-snake.svg" width="100%" alt="Contribution grid animation" />
-</picture>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ParkWonYeop/ParkWonYeop/output/contribution-skyline.svg" width="100%" alt="Park Won Yeop's multi-year contribution skyline" />
+</p>
+
+<p align="center">
+  <sub>GITHUB-RECOGNIZED ACTIVITY · 2022 — NOW · AUTO REFRESHED</sub>
+</p>
 
 <br />
 

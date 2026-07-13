@@ -1,0 +1,44 @@
+name: Refresh activity skyline
+
+on:
+  schedule:
+    - cron: "17 0 * * *"
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/activity.yml"
+      - "scripts/generate-activity-skyline.mjs"
+
+concurrency:
+  group: activity-skyline
+  cancel-in-progress: true
+
+jobs:
+  generate:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out profile source
+        uses: actions/checkout@v5
+
+      - name: Generate multi-year skyline
+        run: node scripts/generate-activity-skyline.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USERNAME: ${{ github.repository_owner }}
+          START_YEAR: "2022"
+          OUTPUT_PATH: dist/contribution-skyline.svg
+
+      - name: Publish generated SVG
+        uses: crazy-max/ghaction-github-pages@v3.1.0
+        with:
+          target_branch: output
+          build_dir: dist
+          commit_message: "chore: refresh activity skyline"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
