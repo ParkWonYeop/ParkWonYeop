@@ -7,6 +7,6 @@
   <text x="40" y="95" fill="#FAFAFA" font-family="Inter, -apple-system, Segoe UI, sans-serif" font-size="32" font-weight="800" letter-spacing="-0.8">RVC-Learn-hub</text>
   <text x="40" y="128" fill="#A1A1AA" font-family="Pretendard, -apple-system, Segoe UI, sans-serif" font-size="14">여러 GPU 서버의 학습·데이터셋·작업·모델을 한곳에서 오케스트레이션</text>
   <g transform="translate(790 46)" font-family="ui-monospace, monospace" font-size="11" text-anchor="middle"><g><rect width="92" height="34" rx="6" fill="#14180F" stroke="#B6F13A" stroke-opacity="0.4"/><text x="46" y="22" fill="#D4D4D8">PYTHON</text></g><g transform="translate(104)"><rect width="92" height="34" rx="6" fill="#14180F" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="46" y="22" fill="#D4D4D8">FASTAPI</text></g><g transform="translate(208)"><rect width="92" height="34" rx="6" fill="#14180F" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="46" y="22" fill="#D4D4D8">NEXT.JS</text></g></g>
-  <g transform="translate(1086 110)" fill="none" stroke="#B6F13A" stroke-width="2"><path d="M0 14H42M32 4L42 14L32 24"><animateTransform attributeName="transform" type="translate" values="0 0;8 0;0 0" dur="1.8s" repeatCount="indefinite"/></path></g>
+  <g transform="translate(1118 110)" fill="none" stroke="#B6F13A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 4L10 14L0 24"/></g>
   <circle cx="1147" cy="30" r="4" fill="#B6F13A" filter="url(#g)"/>
 </svg>
