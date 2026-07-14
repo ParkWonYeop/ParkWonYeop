@@ -47,7 +47,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ParkWonYeop/ParkWonYeop/output/breakout-contribution-graph-dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/ParkWonYeop/ParkWonYeop/output/breakout-contribution-graph.svg" />
-  <img src="https://raw.githubusercontent.com/ParkWonYeop/ParkWonYeop/output/breakout-contribution-graph.svg" width="100%" alt="Contribution breakout with transparent 10–20 second grass respawns" />
+  <img src="https://raw.githubusercontent.com/ParkWonYeop/ParkWonYeop/output/breakout-contribution-graph.svg" width="100%" alt="Contribution breakout with seamless motion and transparent 30–40 second grass respawns" />
 </picture>
 
 <br />
