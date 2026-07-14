@@ -1,69 +1,87 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title description">
   <title id="title">Park Won Yeop — Backend Engineer</title>
-  <desc id="description">A dark minimal profile banner with lime accents and geometric contribution squares.</desc>
+  <desc id="description">Animated terminal-inspired profile banner in black and acid lime.</desc>
   <defs>
-    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#09090B" />
-      <stop offset="1" stop-color="#121714" />
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#070708" />
+      <stop offset="0.58" stop-color="#0C0D0B" />
+      <stop offset="1" stop-color="#11170D" />
     </linearGradient>
-    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(1010 75) rotate(135) scale(390 310)" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#B6F13A" stop-opacity="0.15" />
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1010 70) rotate(135) scale(430 330)">
+      <stop stop-color="#B6F13A" stop-opacity="0.18" />
       <stop offset="1" stop-color="#B6F13A" stop-opacity="0" />
     </radialGradient>
-    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
-      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#FFFFFF" stroke-opacity="0.045" stroke-width="1" />
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M30 0H0V30" fill="none" stroke="#FAFAFA" stroke-opacity="0.035" />
     </pattern>
-    <filter id="soft-glow" x="-100%" y="-100%" width="300%" height="300%">
-      <feGaussianBlur stdDeviation="9" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
+    <clipPath id="frame"><rect x="1" y="1" width="1198" height="358" rx="22" /></clipPath>
+    <clipPath id="typing"><rect x="55" y="205" width="0" height="32">
+      <animate attributeName="width" values="0;0;620;620;0" keyTimes="0;0.08;0.58;0.92;1" dur="8s" repeatCount="indefinite" />
+    </rect></clipPath>
+    <filter id="lime-glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
     </filter>
-    <clipPath id="frame">
-      <rect x="1" y="1" width="1198" height="358" rx="24" />
-    </clipPath>
   </defs>
 
   <g clip-path="url(#frame)">
-    <rect width="1200" height="360" fill="url(#background)" />
+    <rect width="1200" height="360" fill="url(#bg)" />
     <rect width="1200" height="360" fill="url(#grid)" />
     <rect width="1200" height="360" fill="url(#glow)" />
 
-    <path d="M0 306H1200" stroke="#FFFFFF" stroke-opacity="0.08" />
-    <path d="M889 0V360" stroke="#FFFFFF" stroke-opacity="0.08" />
+    <path d="M0 306H1200M890 0V360" stroke="#FAFAFA" stroke-opacity="0.07" />
+    <path d="M890 306H1200" stroke="#B6F13A" stroke-opacity="0.42">
+      <animate attributeName="stroke-opacity" values="0.18;0.72;0.18" dur="4s" repeatCount="indefinite" />
+    </path>
 
-    <g transform="translate(52 45)">
-      <rect width="174" height="30" rx="15" fill="#B6F13A" />
-      <circle cx="17" cy="15" r="4" fill="#09090B" />
-      <text x="30" y="20" fill="#09090B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="1.4">BACKEND ENGINEER</text>
+    <g transform="translate(52 42)">
+      <rect width="184" height="32" rx="4" fill="#B6F13A" />
+      <text x="14" y="21" fill="#070708" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="800" letter-spacing="1.5">BACKEND / SYSTEMS</text>
     </g>
 
-    <text x="52" y="178" fill="#FAFAFA" font-family="Inter, Pretendard, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="82" font-weight="800" letter-spacing="-3.5">Park Won Yeop</text>
-    <text x="56" y="226" fill="#A1A1AA" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="18" letter-spacing="0.5">RELIABLE SYSTEMS · CLEAN DECISIONS · CALM OPERATIONS</text>
+    <text x="52" y="176" fill="#FAFAFA" font-family="Inter, Pretendard, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="82" font-weight="850" letter-spacing="-3.8">Park Won Yeop</text>
 
-    <g transform="translate(54 279)" fill="#D4D4D8" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="600" letter-spacing="1.2">
-      <text x="0" y="0">01  PERFORMANCE</text>
-      <text x="174" y="0">02  MODERNIZATION</text>
-      <text x="386" y="0">03  HOMELAB</text>
+    <g clip-path="url(#typing)">
+      <text x="55" y="230" fill="#B6F13A" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19" font-weight="700" letter-spacing="0.8">$ BUILDING RELIABLE SYSTEMS_</text>
+    </g>
+    <rect x="55" y="211" width="10" height="23" fill="#B6F13A" filter="url(#lime-glow)">
+      <animate attributeName="x" values="55;55;656;656;55" keyTimes="0;0.08;0.58;0.92;1" dur="8s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="1;0.2;1;0.2;1" dur="0.8s" repeatCount="indefinite" />
+    </rect>
+
+    <g transform="translate(55 278)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="650" letter-spacing="1.2">
+      <text fill="#A1A1AA">PERFORMANCE</text><text x="97" fill="#3F3F46">/</text>
+      <text x="115" fill="#A1A1AA">MODERNIZATION</text><text x="239" fill="#3F3F46">/</text>
+      <text x="257" fill="#A1A1AA">OPERATIONS</text>
     </g>
 
-    <g transform="translate(948 71) rotate(8)">
-      <rect x="0" y="0" width="116" height="116" rx="15" fill="none" stroke="#B6F13A" stroke-width="2" stroke-opacity="0.75" />
-      <rect x="29" y="29" width="116" height="116" rx="15" fill="#B6F13A" fill-opacity="0.07" stroke="#B6F13A" stroke-opacity="0.45" />
-      <rect x="58" y="58" width="116" height="116" rx="15" fill="#B6F13A" fill-opacity="0.04" stroke="#FFFFFF" stroke-opacity="0.18" />
+    <g transform="translate(930 48)">
+      <text x="0" y="0" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" letter-spacing="1.5">LIVE SYSTEM MAP</text>
+      <g transform="translate(0 28)">
+        <rect width="210" height="52" rx="8" fill="#0A0A0B" stroke="#B6F13A" stroke-opacity="0.5" />
+        <circle cx="18" cy="26" r="5" fill="#B6F13A"><animate attributeName="opacity" values="0.25;1;0.25" dur="2s" repeatCount="indefinite" /></circle>
+        <text x="36" y="23" fill="#E4E4E7" font-family="ui-monospace, monospace" font-size="11">API_GATEWAY</text>
+        <text x="36" y="38" fill="#52525B" font-family="ui-monospace, monospace" font-size="9">HEALTHY · 17ms</text>
+      </g>
+      <path d="M105 80V102" stroke="#B6F13A" stroke-dasharray="3 5"><animate attributeName="stroke-dashoffset" values="8;0" dur="1s" repeatCount="indefinite" /></path>
+      <g transform="translate(0 102)">
+        <rect width="98" height="52" rx="8" fill="#0A0A0B" stroke="#FAFAFA" stroke-opacity="0.16" />
+        <text x="13" y="23" fill="#D4D4D8" font-family="ui-monospace, monospace" font-size="10">WORKER_01</text>
+        <text x="13" y="38" fill="#52525B" font-family="ui-monospace, monospace" font-size="9">ACTIVE</text>
+        <rect x="112" width="98" height="52" rx="8" fill="#0A0A0B" stroke="#FAFAFA" stroke-opacity="0.16" />
+        <text x="125" y="23" fill="#D4D4D8" font-family="ui-monospace, monospace" font-size="10">WORKER_02</text>
+        <text x="125" y="38" fill="#52525B" font-family="ui-monospace, monospace" font-size="9">ACTIVE</text>
+      </g>
+      <g transform="translate(0 178)" fill="#B6F13A">
+        <rect width="11" height="11" rx="2" opacity="0.18" />
+        <rect x="19" width="11" height="11" rx="2" opacity="0.32" />
+        <rect x="38" width="11" height="11" rx="2" opacity="0.5" />
+        <rect x="57" width="11" height="11" rx="2" opacity="0.72" />
+        <rect x="76" width="11" height="11" rx="2" filter="url(#lime-glow)" />
+      </g>
     </g>
 
-    <g transform="translate(915 274)" fill="#B6F13A">
-      <rect width="10" height="10" rx="2" opacity="0.2" />
-      <rect x="17" width="10" height="10" rx="2" opacity="0.35" />
-      <rect x="34" width="10" height="10" rx="2" opacity="0.55" />
-      <rect x="51" width="10" height="10" rx="2" opacity="0.8" />
-      <rect x="68" width="10" height="10" rx="2" filter="url(#soft-glow)" />
-    </g>
-
-    <text x="1148" y="326" text-anchor="end" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" letter-spacing="1.5">PWY / 2026</text>
+    <text x="1148" y="329" text-anchor="end" fill="#52525B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" letter-spacing="1.6">SEOUL · UTC+09 / 2026</text>
   </g>
-
-  <rect x="1" y="1" width="1198" height="358" rx="24" fill="none" stroke="#FFFFFF" stroke-opacity="0.12" stroke-width="2" />
+  <rect x="1" y="1" width="1198" height="358" rx="22" fill="none" stroke="#FAFAFA" stroke-opacity="0.13" stroke-width="2" />
 </svg>

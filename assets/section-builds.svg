@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="76" viewBox="0 0 1200 76" role="img" aria-label="Selected builds">
+  <rect x="1" y="1" width="1198" height="74" rx="14" fill="#09090B" stroke="#27272A" stroke-width="2"/>
+  <text x="32" y="46" fill="#B6F13A" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="800" letter-spacing="2">02 / LATEST.SHIPS</text>
+  <path d="M218 38H1128" stroke="#3F3F46" stroke-dasharray="2 8"/>
+  <circle cx="1148" cy="38" r="5" fill="#B6F13A"><animate attributeName="opacity" values="0.2;1;0.2" dur="2s" repeatCount="indefinite"/></circle>
+</svg>

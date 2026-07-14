@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="76" viewBox="0 0 1200 76" role="img" aria-label="Contributions">
+  <rect x="1" y="1" width="1198" height="74" rx="14" fill="#09090B" stroke="#27272A" stroke-width="2"/>
+  <text x="32" y="46" fill="#B6F13A" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="800" letter-spacing="2">03 / CONTRIBUTIONS</text>
+  <text x="1168" y="45" text-anchor="end" fill="#52525B" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1.4">10—20s RESPAWN · PHYSICAL COLLISION</text>
+</svg>

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" role="img" aria-labelledby="title description">
+  <title id="title">Technical Toolbox System Map</title>
+  <desc id="description">A graphical map of backend, data, infrastructure, and tooling skills.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#09090B"/><stop offset="1" stop-color="#0D110A"/></linearGradient>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#FAFAFA" opacity="0.045"/></pattern>
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect x="1" y="1" width="1198" height="428" rx="18" fill="url(#bg)" stroke="#27272A" stroke-width="2"/>
+  <rect x="1" y="1" width="1198" height="428" rx="18" fill="url(#dots)"/>
+  <text x="42" y="46" fill="#B6F13A" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="800" letter-spacing="2">01 / TOOLBOX.MAP</text>
+  <text x="1158" y="46" text-anchor="end" fill="#52525B" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1.5">17 NODES · 04 LAYERS</text>
+
+  <path d="M142 116H1074M142 207H1074M142 298H1074" stroke="#3F3F46" stroke-opacity="0.55" stroke-dasharray="3 8"/>
+  <rect x="42" y="78" width="92" height="262" rx="10" fill="#0A0A0B" stroke="#3F3F46"/>
+  <g fill="#71717A" font-family="ui-monospace, monospace" font-size="9" font-weight="700" letter-spacing="1.2">
+    <text x="65" y="120">BACKEND</text><text x="75" y="211">DATA</text><text x="64" y="302">INFRA</text>
+  </g>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" text-anchor="middle">
+    <g transform="translate(162 88)">
+      <g><rect width="112" height="54" rx="8" fill="#10110E" stroke="#B6F13A" stroke-opacity="0.5"/><text x="56" y="33" fill="#E4E4E7">KOTLIN</text></g>
+      <g transform="translate(128)"><rect width="112" height="54" rx="8" fill="#10110E" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="56" y="33" fill="#E4E4E7">JAVA</text></g>
+      <g transform="translate(256)"><rect width="112" height="54" rx="8" fill="#10110E" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="56" y="33" fill="#E4E4E7">PYTHON</text></g>
+      <g transform="translate(384)"><rect width="138" height="54" rx="8" fill="#10110E" stroke="#B6F13A" stroke-opacity="0.26"/><text x="69" y="33" fill="#E4E4E7">SPRING BOOT</text></g>
+      <g transform="translate(538)"><rect width="112" height="54" rx="8" fill="#10110E" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="56" y="33" fill="#E4E4E7">FASTAPI</text></g>
+      <g transform="translate(666)"><rect width="112" height="54" rx="8" fill="#10110E" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="56" y="33" fill="#E4E4E7">NESTJS</text></g>
+      <g transform="translate(794)"><rect width="112" height="54" rx="8" fill="#10110E" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="56" y="33" fill="#E4E4E7">MYBATIS</text></g>
+    </g>
+    <g transform="translate(162 179)">
+      <g><rect width="126" height="54" rx="8" fill="#10110E" stroke="#B6F13A" stroke-opacity="0.38"/><text x="63" y="33" fill="#E4E4E7">POSTGRESQL</text></g>
+      <g transform="translate(142)"><rect width="112" height="54" rx="8" fill="#10110E" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="56" y="33" fill="#E4E4E7">MYSQL</text></g>
+      <g transform="translate(270)"><rect width="112" height="54" rx="8" fill="#10110E" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="56" y="33" fill="#E4E4E7">REDIS</text></g>
+      <g transform="translate(398)"><rect width="126" height="54" rx="8" fill="#10110E" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="63" y="33" fill="#E4E4E7">MONGODB</text></g>
+      <g transform="translate(540)"><rect width="154" height="54" rx="8" fill="#10110E" stroke="#B6F13A" stroke-opacity="0.22"/><text x="77" y="33" fill="#E4E4E7">ELASTICSEARCH</text></g>
+      <g transform="translate(710)"><rect width="112" height="54" rx="8" fill="#10110E" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="56" y="33" fill="#E4E4E7">MINIO</text></g>
+    </g>
+    <g transform="translate(162 270)">
+      <g><rect width="112" height="54" rx="8" fill="#10110E" stroke="#B6F13A" stroke-opacity="0.5"/><text x="56" y="33" fill="#E4E4E7">DOCKER</text></g>
+      <g transform="translate(128)"><rect width="112" height="54" rx="8" fill="#10110E" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="56" y="33" fill="#E4E4E7">LINUX</text></g>
+      <g transform="translate(256)"><rect width="112" height="54" rx="8" fill="#10110E" stroke="#B6F13A" stroke-opacity="0.28"/><text x="56" y="33" fill="#E4E4E7">PROXMOX</text></g>
+      <g transform="translate(384)"><rect width="112" height="54" rx="8" fill="#10110E" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="56" y="33" fill="#E4E4E7">GIT</text></g>
+      <g transform="translate(512)"><rect width="126" height="54" rx="8" fill="#10110E" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="63" y="33" fill="#E4E4E7">LOGSTASH</text></g>
+      <g transform="translate(654)"><rect width="126" height="54" rx="8" fill="#10110E" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="63" y="33" fill="#E4E4E7">MLFLOW</text></g>
+    </g>
+  </g>
+
+  <g transform="translate(42 373)" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1.2">
+    <circle cx="5" cy="-3" r="5" fill="#B6F13A" filter="url(#glow)"><animate attributeName="opacity" values="0.25;1;0.25" dur="2.2s" repeatCount="indefinite"/></circle>
+    <text x="20" fill="#71717A">REQUEST FLOW</text><path d="M117 -3H1110" stroke="#B6F13A" stroke-opacity="0.18"/>
+    <circle cx="117" cy="-3" r="3" fill="#B6F13A"><animate attributeName="cx" values="117;1110" dur="7s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.9;1" dur="7s" repeatCount="indefinite"/></circle>
+  </g>
+</svg>

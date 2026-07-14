@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="38" viewBox="0 0 160 38" role="img" aria-label="Email Park Won Yeop">
+  <rect x="1" y="1" width="158" height="36" rx="7" fill="#0A0A0B" stroke="#3F3F46"/>
+  <rect x="15" y="14" width="12" height="10" rx="2" fill="none" stroke="#B6F13A" stroke-width="1.5"/><path d="M16 15L21 20L26 15" fill="none" stroke="#B6F13A" stroke-width="1.5"/>
+  <text x="38" y="23" fill="#E4E4E7" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="700" letter-spacing="1.2">SEND_SIGNAL</text>
+</svg>

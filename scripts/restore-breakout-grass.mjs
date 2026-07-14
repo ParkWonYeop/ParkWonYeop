@@ -1,16 +1,18 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { basename } from 'node:path';
 
-const DURATION_MS = 90_000;
+const DURATION_MS = 120_000;
+const COOLDOWN_MS = 20_000;
+const PLAY_UNTIL_MS = DURATION_MS - COOLDOWN_MS;
 const RESPAWN_MIN_MS = 10_000;
 const RESPAWN_TARGET_MAX_MS = 19_000;
 const RESPAWN_HARD_MAX_MS = 20_000;
 const RESPAWN_FORCE_MS = 19_950;
-const BREAKABLE_UNTIL_MS = DURATION_MS - RESPAWN_HARD_MAX_MS;
 const FPS = 30;
 const BALL_SPEED = 235;
 const PADDLE_SPEED = 900;
 const ACCENT = '#B6F13A';
+const HIDDEN_FILL = 'transparent';
 
 const palettes = {
   light: {
@@ -234,6 +236,20 @@ const simulate = (geometry) => {
     }
   };
 
+  const processRespawns = (timeMs) => {
+    for (const cell of breakableCells) {
+      if (cell.active || cell.respawnEligibleAt === null || timeMs < cell.respawnEligibleAt) continue;
+      const maximumRespawnAt = cell.lastHitAt + RESPAWN_FORCE_MS;
+      if (!circleIntersectsCell(ball, cell, ballRadius) || timeMs >= maximumRespawnAt) {
+        cell.active = true;
+        cell.lastRespawnAt = timeMs;
+        cell.respawnEligibleAt = null;
+        cell.events.push({ timeMs, active: true });
+        respawnDurations.push(timeMs - cell.lastHitAt);
+      }
+    }
+  };
+
   const ballFrames = [{ x: ball.x, y: ball.y }];
   const paddleFrames = [{ x: paddleX }];
   aimBallUpward();
@@ -242,6 +258,20 @@ const simulate = (geometry) => {
   const frameSeconds = 1 / FPS;
 
   for (let frame = 1; frame <= totalFrames; frame += 1) {
+    const frameTimeMs = frame * frameSeconds * 1000;
+
+    if (frameTimeMs > PLAY_UNTIL_MS) {
+      ball.x = width / 2;
+      ball.y = paddleY - ballRadius;
+      ball.vx = 0;
+      ball.vy = 0;
+      paddleX = clamp(ball.x - paddleWidth / 2, 0, width - paddleWidth);
+      processRespawns(frameTimeMs);
+      ballFrames.push({ x: ball.x, y: ball.y });
+      paddleFrames.push({ x: paddleX });
+      continue;
+    }
+
     const paddleTarget = clamp(ball.x - paddleWidth / 2, 0, width - paddleWidth);
     const paddleStep = PADDLE_SPEED * frameSeconds;
     paddleX += clamp(paddleTarget - paddleX, -paddleStep, paddleStep);
@@ -253,17 +283,7 @@ const simulate = (geometry) => {
     for (let subStep = 0; subStep < subSteps; subStep += 1) {
       const timeMs = ((frame - 1) + (subStep + 1) / subSteps) * frameSeconds * 1000;
 
-      for (const cell of breakableCells) {
-        if (cell.active || cell.respawnEligibleAt === null || timeMs < cell.respawnEligibleAt) continue;
-        const maximumRespawnAt = cell.lastHitAt + RESPAWN_FORCE_MS;
-        if (!circleIntersectsCell(ball, cell, ballRadius) || timeMs >= maximumRespawnAt) {
-          cell.active = true;
-          cell.lastRespawnAt = timeMs;
-          cell.respawnEligibleAt = null;
-          cell.events.push({ timeMs, active: true });
-          respawnDurations.push(timeMs - cell.lastHitAt);
-        }
-      }
+      processRespawns(timeMs);
 
       const previousX = ball.x;
       const previousY = ball.y;
@@ -298,16 +318,14 @@ const simulate = (geometry) => {
         if (!cell.active || !circleIntersectsCell(ball, cell, ballRadius)) continue;
 
         resolveCellCollision(cell, previousX, previousY);
-        if (timeMs <= BREAKABLE_UNTIL_MS) {
-          const hitAfterRespawn = cell.lastRespawnAt !== null;
-          cell.active = false;
-          cell.events.push({ timeMs, active: false });
-          cell.hitCount += 1;
-          cell.lastHitAt = timeMs;
-          cell.respawnEligibleAt = timeMs + respawnDelay(cell);
-          totalHits += 1;
-          if (hitAfterRespawn) respawnedHits += 1;
-        }
+        const hitAfterRespawn = cell.lastRespawnAt !== null;
+        cell.active = false;
+        cell.events.push({ timeMs, active: false });
+        cell.hitCount += 1;
+        cell.lastHitAt = timeMs;
+        cell.respawnEligibleAt = timeMs + respawnDelay(cell);
+        totalHits += 1;
+        if (hitAfterRespawn) respawnedHits += 1;
         break;
       }
 
@@ -329,6 +347,14 @@ const simulate = (geometry) => {
     throw new Error('Simulation did not collide with any respawned contribution cell');
   }
 
+  const hiddenEventCount = breakableCells.reduce(
+    (total, cell) => total + cell.events.filter((event) => !event.active).length,
+    0
+  );
+  if (hiddenEventCount !== totalHits) {
+    throw new Error(`Only ${hiddenEventCount}/${totalHits} collisions hide their contribution cell`);
+  }
+
   const minimumRespawn = Math.min(...respawnDurations);
   const maximumRespawn = Math.max(...respawnDurations);
   if (minimumRespawn < RESPAWN_MIN_MS || maximumRespawn > RESPAWN_HARD_MAX_MS + 1) {
@@ -339,6 +365,7 @@ const simulate = (geometry) => {
     ballFrames,
     paddleFrames,
     totalHits,
+    hiddenEventCount,
     respawnedHits,
     activeCellCount: breakableCells.length,
     minimumRespawn,
@@ -372,7 +399,7 @@ const transformSvg = (source, fileName) => {
       for (const event of cell.events) {
         if (event.timeMs <= 0 || event.timeMs >= DURATION_MS) continue;
         times.push(event.timeMs);
-        values.push(event.active ? cell.initialColor : palette.none);
+        values.push(event.active ? cell.initialColor : HIDDEN_FILL);
       }
       times.push(DURATION_MS);
       values.push(cell.initialColor);
@@ -407,11 +434,11 @@ const transformSvg = (source, fileName) => {
     .replace(/(<rect id="paddle"[^>]*\sfill=")[^"]*(")/, `$1${ACCENT}$2`)
     .replace(
       /<desc>[^<]*breakout-contribution-graph[^<]*<\/desc>|<desc>Contribution breakout[^<]*<\/desc>/,
-      '<desc>Contribution breakout with physical 10-20 second brick respawns</desc>'
+      '<desc>Contribution breakout with transparent 10-20 second brick respawns</desc>'
     )
     .replace(
       /<metadata>[\s\S]*?<\/metadata>/,
-      `<metadata><info><durationMs>${DURATION_MS}</durationMs><respawnMinMs>${RESPAWN_MIN_MS}</respawnMinMs><respawnMaxMs>${RESPAWN_HARD_MAX_MS}</respawnMaxMs><activeCells>${simulation.activeCellCount}</activeCells><hits>${simulation.totalHits}</hits><respawnedCellHits>${simulation.respawnedHits}</respawnedCellHits><observedRespawnMinMs>${formatNumber(simulation.minimumRespawn, 1)}</observedRespawnMinMs><observedRespawnMaxMs>${formatNumber(simulation.maximumRespawn, 1)}</observedRespawnMaxMs></info></metadata>`
+      `<metadata><info><durationMs>${DURATION_MS}</durationMs><playUntilMs>${PLAY_UNTIL_MS}</playUntilMs><cooldownMs>${COOLDOWN_MS}</cooldownMs><respawnMinMs>${RESPAWN_MIN_MS}</respawnMinMs><respawnMaxMs>${RESPAWN_HARD_MAX_MS}</respawnMaxMs><activeCells>${simulation.activeCellCount}</activeCells><hits>${simulation.totalHits}</hits><transparentRemovals>${simulation.hiddenEventCount}</transparentRemovals><respawnedCellHits>${simulation.respawnedHits}</respawnedCellHits><observedRespawnMinMs>${formatNumber(simulation.minimumRespawn, 1)}</observedRespawnMinMs><observedRespawnMaxMs>${formatNumber(simulation.maximumRespawn, 1)}</observedRespawnMaxMs></info></metadata>`
     );
 
   return { svg: transformed, simulation };
@@ -426,7 +453,8 @@ for (const file of files) {
   await writeFile(file, result.svg);
   const stats = result.simulation;
   console.log(
-    `${file}: ${stats.totalHits} hits, ${stats.respawnedHits} hits after respawn, ` +
+    `${file}: ${stats.hiddenEventCount}/${stats.totalHits} hits turn transparent, ` +
+      `${stats.respawnedHits} hits after respawn, ` +
       `${formatNumber(stats.minimumRespawn / 1000, 2)}-${formatNumber(stats.maximumRespawn / 1000, 2)}s observed respawn window`
   );
 }
