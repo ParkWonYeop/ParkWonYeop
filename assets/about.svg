@@ -4,7 +4,7 @@
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#09090B"/><stop offset="1" stop-color="#11150E"/></linearGradient>
     <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#FAFAFA" stroke-opacity="0.025"/></pattern>
-    <clipPath id="command"><rect x="84" y="119" width="0" height="26"><animate attributeName="width" values="0;0;330;330" keyTimes="0;0.08;0.46;1" dur="7s" repeatCount="indefinite"/></rect></clipPath>
+    <clipPath id="command"><rect x="62" y="119" width="0" height="27"><animate attributeName="width" calcMode="discrete" values="0;0;9.05;18.10;27.15;36.20;45.25;54.30;63.35;72.40;81.45;90.50;99.55;108.60;117.65;126.70;135.75;144.80;153.85;162.90;171.95;181;181;0" keyTimes="0;0.08;0.097;0.114;0.131;0.148;0.165;0.182;0.199;0.216;0.233;0.25;0.267;0.284;0.301;0.318;0.335;0.352;0.369;0.386;0.403;0.42;0.92;1" dur="7s" repeatCount="indefinite"/></rect></clipPath>
     <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
   </defs>
   <rect x="1" y="1" width="1198" height="408" rx="18" fill="url(#bg)" stroke="#27272A" stroke-width="2"/>
@@ -19,9 +19,9 @@
     <circle cx="64" cy="87" r="4" fill="#3F3F46"/><circle cx="78" cy="87" r="4" fill="#52525B"/><circle cx="92" cy="87" r="4" fill="#B6F13A"/>
     <text x="396" y="91" text-anchor="middle" fill="#52525B" font-family="ui-monospace, monospace" font-size="9" letter-spacing="1">~/profile/about</text>
 
-    <g clip-path="url(#command)"><text x="62" y="139" fill="#E4E4E7" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15"><tspan fill="#B6F13A">$</tspan> ./whoami --verbose</text></g>
+    <g clip-path="url(#command)"><text x="62" y="139" textLength="181" lengthAdjust="spacingAndGlyphs" fill="#E4E4E7" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15"><tspan fill="#B6F13A">$</tspan> ./whoami --verbose</text></g>
     <rect x="62" y="122" width="8" height="21" fill="#B6F13A" filter="url(#glow)">
-      <animate attributeName="x" values="62;62;300;300" keyTimes="0;0.08;0.46;1" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="x" calcMode="discrete" values="62;62;76.05;85.10;94.15;103.20;112.25;121.30;130.35;139.40;148.45;157.50;166.55;175.60;184.65;193.70;202.75;211.80;220.85;229.90;238.95;248;248;62" keyTimes="0;0.08;0.097;0.114;0.131;0.148;0.165;0.182;0.199;0.216;0.233;0.25;0.267;0.284;0.301;0.318;0.335;0.352;0.369;0.386;0.403;0.42;0.92;1" dur="7s" repeatCount="indefinite"/>
       <animate attributeName="opacity" values="1;0.15;1" dur="0.75s" repeatCount="indefinite"/>
     </rect>
 

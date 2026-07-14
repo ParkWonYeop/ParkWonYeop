@@ -9,12 +9,12 @@
   <rect x="1" y="1" width="1198" height="428" rx="18" fill="url(#bg)" stroke="#27272A" stroke-width="2"/>
   <rect x="1" y="1" width="1198" height="428" rx="18" fill="url(#dots)"/>
   <text x="42" y="46" fill="#B6F13A" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="800" letter-spacing="2">01 / TOOLBOX.MAP</text>
-  <text x="1158" y="46" text-anchor="end" fill="#52525B" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1.5">17 NODES · 04 LAYERS</text>
+  <text x="1158" y="46" text-anchor="end" fill="#52525B" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1.5">19 NODES · 03 LAYERS</text>
 
   <path d="M142 116H1074M142 207H1074M142 298H1074" stroke="#3F3F46" stroke-opacity="0.55" stroke-dasharray="3 8"/>
   <rect x="42" y="78" width="92" height="262" rx="10" fill="#0A0A0B" stroke="#3F3F46"/>
   <g fill="#71717A" font-family="ui-monospace, monospace" font-size="9" font-weight="700" letter-spacing="1.2">
-    <text x="65" y="120">BACKEND</text><text x="75" y="211">DATA</text><text x="64" y="302">INFRA</text>
+    <text x="62" y="121">BACKEND</text><text x="62" y="212">DATA</text><text x="62" y="303">INFRA</text>
   </g>
 
   <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" text-anchor="middle">
