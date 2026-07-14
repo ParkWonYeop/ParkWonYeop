@@ -5,9 +5,13 @@ const DURATION_MS = 120_000;
 const COOLDOWN_MS = 20_000;
 const PLAY_UNTIL_MS = DURATION_MS - COOLDOWN_MS;
 const RESPAWN_MIN_MS = 10_000;
-const RESPAWN_TARGET_MAX_MS = 19_000;
+const RESPAWN_TARGET_MAX_MS = 17_000;
 const RESPAWN_HARD_MAX_MS = 20_000;
-const RESPAWN_FORCE_MS = 19_950;
+const RESPAWN_ESCAPE_MS = 18_000;
+const RESPAWN_ESCAPE_RETRY_MS = 250;
+const MIN_RESPAWN_VISIBLE_MS = 250;
+const TRAP_WINDOW_MS = 2_000;
+const MIN_TRAP_MOTION_SPAN = 40;
 const FPS = 30;
 const BALL_SPEED = 235;
 const PADDLE_SPEED = 900;
@@ -113,7 +117,8 @@ const parseSvg = (source, palette) => {
       hitCount: 0,
       lastHitAt: null,
       lastRespawnAt: null,
-      respawnEligibleAt: null
+      respawnEligibleAt: null,
+      lastEscapeSteerAt: null
     });
   }
 
@@ -140,7 +145,9 @@ const simulate = (geometry) => {
   let targetCursor = 0;
   let totalHits = 0;
   let respawnedHits = 0;
+  let respawnEscapeSteers = 0;
   const respawnDurations = [];
+  const respawnVisibleDurations = [];
 
   const chooseTarget = () => {
     const activeCells = breakableCells.filter((cell) => cell.active);
@@ -236,16 +243,45 @@ const simulate = (geometry) => {
     }
   };
 
-  const processRespawns = (timeMs) => {
+  const steerBallAwayFromCell = (cell) => {
+    const centerX = cell.x + cell.width / 2;
+    const centerY = cell.y + cell.height / 2;
+    let dx = ball.x - centerX;
+    let dy = ball.y - centerY;
+    const distance = Math.hypot(dx, dy);
+    if (distance < 0.001) {
+      dx = 0;
+      dy = 1;
+    } else {
+      dx /= distance;
+      dy /= distance;
+    }
+    ball.vx = dx * BALL_SPEED;
+    ball.vy = dy * BALL_SPEED;
+  };
+
+  const processRespawns = (timeMs, ballIsParked = false) => {
+    const clearanceRadius = ballRadius + BALL_SPEED * (MIN_RESPAWN_VISIBLE_MS / 1000);
+    let escapeSteeredThisStep = false;
     for (const cell of breakableCells) {
       if (cell.active || cell.respawnEligibleAt === null || timeMs < cell.respawnEligibleAt) continue;
-      const maximumRespawnAt = cell.lastHitAt + RESPAWN_FORCE_MS;
-      if (!circleIntersectsCell(ball, cell, ballRadius) || timeMs >= maximumRespawnAt) {
+      if (ballIsParked || !circleIntersectsCell(ball, cell, clearanceRadius)) {
         cell.active = true;
         cell.lastRespawnAt = timeMs;
         cell.respawnEligibleAt = null;
         cell.events.push({ timeMs, active: true });
         respawnDurations.push(timeMs - cell.lastHitAt);
+        continue;
+      }
+
+      const escapeAt = cell.lastHitAt + RESPAWN_ESCAPE_MS;
+      const maySteerAgain =
+        cell.lastEscapeSteerAt === null || timeMs - cell.lastEscapeSteerAt >= RESPAWN_ESCAPE_RETRY_MS;
+      if (timeMs >= escapeAt && maySteerAgain && !escapeSteeredThisStep) {
+        steerBallAwayFromCell(cell);
+        cell.lastEscapeSteerAt = timeMs;
+        respawnEscapeSteers += 1;
+        escapeSteeredThisStep = true;
       }
     }
   };
@@ -266,7 +302,7 @@ const simulate = (geometry) => {
       ball.vx = 0;
       ball.vy = 0;
       paddleX = clamp(ball.x - paddleWidth / 2, 0, width - paddleWidth);
-      processRespawns(frameTimeMs);
+      processRespawns(frameTimeMs, true);
       ballFrames.push({ x: ball.x, y: ball.y });
       paddleFrames.push({ x: paddleX });
       continue;
@@ -281,9 +317,10 @@ const simulate = (geometry) => {
     const subSeconds = frameSeconds / subSteps;
 
     for (let subStep = 0; subStep < subSteps; subStep += 1) {
+      const subStepStartMs = ((frame - 1) + subStep / subSteps) * frameSeconds * 1000;
       const timeMs = ((frame - 1) + (subStep + 1) / subSteps) * frameSeconds * 1000;
 
-      processRespawns(timeMs);
+      processRespawns(subStepStartMs);
 
       const previousX = ball.x;
       const previousY = ball.y;
@@ -319,6 +356,15 @@ const simulate = (geometry) => {
 
         resolveCellCollision(cell, previousX, previousY);
         const hitAfterRespawn = cell.lastRespawnAt !== null;
+        if (hitAfterRespawn) {
+          const visibleDuration = timeMs - cell.lastRespawnAt;
+          if (visibleDuration < MIN_RESPAWN_VISIBLE_MS) {
+            throw new Error(
+              `${cell.id} was hit only ${formatNumber(visibleDuration, 1)}ms after respawning`
+            );
+          }
+          respawnVisibleDurations.push(visibleDuration);
+        }
         cell.active = false;
         cell.events.push({ timeMs, active: false });
         cell.hitCount += 1;
@@ -355,10 +401,41 @@ const simulate = (geometry) => {
     throw new Error(`Only ${hiddenEventCount}/${totalHits} collisions hide their contribution cell`);
   }
 
+  for (const cell of breakableCells) {
+    let expectedActive = true;
+    let previousEventAt = -Infinity;
+    for (const event of cell.events) {
+      if (event.timeMs <= previousEventAt) {
+        throw new Error(`${cell.id} contains duplicate or unsorted animation events`);
+      }
+      expectedActive = !expectedActive;
+      if (event.active !== expectedActive) {
+        throw new Error(`${cell.id} contains a non-alternating animation event`);
+      }
+      previousEventAt = event.timeMs;
+    }
+  }
+
   const minimumRespawn = Math.min(...respawnDurations);
   const maximumRespawn = Math.max(...respawnDurations);
   if (minimumRespawn < RESPAWN_MIN_MS || maximumRespawn > RESPAWN_HARD_MAX_MS + 1) {
     throw new Error(`Respawn window out of bounds: ${minimumRespawn}ms-${maximumRespawn}ms`);
+  }
+  const minimumVisibleAfterRespawn = Math.min(...respawnVisibleDurations);
+  const trapWindowFrames = Math.round((TRAP_WINDOW_MS / 1000) * FPS);
+  const playFrameCount = Math.round((PLAY_UNTIL_MS / 1000) * FPS);
+  let minimumTrapMotionSpan = Infinity;
+  for (let start = 0; start + trapWindowFrames <= playFrameCount; start += 1) {
+    const window = ballFrames.slice(start, start + trapWindowFrames + 1);
+    const xs = window.map((frame) => frame.x);
+    const ys = window.map((frame) => frame.y);
+    const motionSpan = Math.max(...xs) - Math.min(...xs) + Math.max(...ys) - Math.min(...ys);
+    minimumTrapMotionSpan = Math.min(minimumTrapMotionSpan, motionSpan);
+  }
+  if (minimumTrapMotionSpan < MIN_TRAP_MOTION_SPAN) {
+    throw new Error(
+      `Ball motion collapsed to ${formatNumber(minimumTrapMotionSpan, 1)}px within ${TRAP_WINDOW_MS}ms`
+    );
   }
 
   return {
@@ -367,9 +444,12 @@ const simulate = (geometry) => {
     totalHits,
     hiddenEventCount,
     respawnedHits,
+    respawnEscapeSteers,
     activeCellCount: breakableCells.length,
     minimumRespawn,
-    maximumRespawn
+    maximumRespawn,
+    minimumVisibleAfterRespawn,
+    minimumTrapMotionSpan
   };
 };
 
@@ -403,10 +483,14 @@ const transformSvg = (source, fileName) => {
       }
       times.push(DURATION_MS);
       values.push(cell.initialColor);
+      const formattedTimes = times.map(formatTime);
+      if (new Set(formattedTimes).size !== formattedTimes.length) {
+        throw new Error(`${cell.id} contains duplicate serialized keyTimes`);
+      }
 
       let openingTag = `<rect id="${id}"${attributes}>`;
       openingTag = replaceAttribute(openingTag, 'fill', cell.initialColor);
-      const animation = `<animate attributeName="fill" calcMode="discrete" dur="${DURATION_MS}ms" repeatCount="indefinite" values="${values.join(';')}" keyTimes="${times.map(formatTime).join(';')}"/>`;
+      const animation = `<animate attributeName="fill" calcMode="discrete" dur="${DURATION_MS}ms" repeatCount="indefinite" values="${values.join(';')}" keyTimes="${formattedTimes.join(';')}"/>`;
       const newContent = content.replace(/<animate\s+attributeName="fill"[\s\S]*?\/>/, animation);
       return `${openingTag}${newContent}</rect>`;
     }
@@ -434,11 +518,11 @@ const transformSvg = (source, fileName) => {
     .replace(/(<rect id="paddle"[^>]*\sfill=")[^"]*(")/, `$1${ACCENT}$2`)
     .replace(
       /<desc>[^<]*breakout-contribution-graph[^<]*<\/desc>|<desc>Contribution breakout[^<]*<\/desc>/,
-      '<desc>Contribution breakout with transparent 10-20 second brick respawns</desc>'
+      '<desc>Contribution breakout with collision-safe transparent 10-20 second brick respawns</desc>'
     )
     .replace(
       /<metadata>[\s\S]*?<\/metadata>/,
-      `<metadata><info><durationMs>${DURATION_MS}</durationMs><playUntilMs>${PLAY_UNTIL_MS}</playUntilMs><cooldownMs>${COOLDOWN_MS}</cooldownMs><respawnMinMs>${RESPAWN_MIN_MS}</respawnMinMs><respawnMaxMs>${RESPAWN_HARD_MAX_MS}</respawnMaxMs><activeCells>${simulation.activeCellCount}</activeCells><hits>${simulation.totalHits}</hits><transparentRemovals>${simulation.hiddenEventCount}</transparentRemovals><respawnedCellHits>${simulation.respawnedHits}</respawnedCellHits><observedRespawnMinMs>${formatNumber(simulation.minimumRespawn, 1)}</observedRespawnMinMs><observedRespawnMaxMs>${formatNumber(simulation.maximumRespawn, 1)}</observedRespawnMaxMs></info></metadata>`
+      `<metadata><info><durationMs>${DURATION_MS}</durationMs><playUntilMs>${PLAY_UNTIL_MS}</playUntilMs><cooldownMs>${COOLDOWN_MS}</cooldownMs><respawnMinMs>${RESPAWN_MIN_MS}</respawnMinMs><respawnMaxMs>${RESPAWN_HARD_MAX_MS}</respawnMaxMs><minimumVisibleAfterRespawnMs>${MIN_RESPAWN_VISIBLE_MS}</minimumVisibleAfterRespawnMs><trapWindowMs>${TRAP_WINDOW_MS}</trapWindowMs><minimumTrapMotionSpan>${MIN_TRAP_MOTION_SPAN}</minimumTrapMotionSpan><activeCells>${simulation.activeCellCount}</activeCells><hits>${simulation.totalHits}</hits><transparentRemovals>${simulation.hiddenEventCount}</transparentRemovals><respawnedCellHits>${simulation.respawnedHits}</respawnedCellHits><respawnEscapeSteers>${simulation.respawnEscapeSteers}</respawnEscapeSteers><observedRespawnMinMs>${formatNumber(simulation.minimumRespawn, 1)}</observedRespawnMinMs><observedRespawnMaxMs>${formatNumber(simulation.maximumRespawn, 1)}</observedRespawnMaxMs><observedMinimumVisibleAfterRespawnMs>${formatNumber(simulation.minimumVisibleAfterRespawn, 1)}</observedMinimumVisibleAfterRespawnMs><observedMinimumTrapMotionSpan>${formatNumber(simulation.minimumTrapMotionSpan, 1)}</observedMinimumTrapMotionSpan></info></metadata>`
     );
 
   return { svg: transformed, simulation };
@@ -455,6 +539,9 @@ for (const file of files) {
   console.log(
     `${file}: ${stats.hiddenEventCount}/${stats.totalHits} hits turn transparent, ` +
       `${stats.respawnedHits} hits after respawn, ` +
-      `${formatNumber(stats.minimumRespawn / 1000, 2)}-${formatNumber(stats.maximumRespawn / 1000, 2)}s observed respawn window`
+      `${formatNumber(stats.minimumRespawn / 1000, 2)}-${formatNumber(stats.maximumRespawn / 1000, 2)}s observed respawn window, ` +
+      `${formatNumber(stats.minimumVisibleAfterRespawn, 1)}ms minimum visible time, ` +
+      `${stats.respawnEscapeSteers} anti-trap redirects, ` +
+      `${formatNumber(stats.minimumTrapMotionSpan, 1)}px minimum ${TRAP_WINDOW_MS / 1000}s motion span`
   );
 }
