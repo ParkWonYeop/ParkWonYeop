@@ -14,6 +14,7 @@ const TRAP_WINDOW_MS = 2_000;
 const MIN_TRAP_MOTION_SPAN = 40;
 const FPS = 30;
 const BALL_SPEED = 235;
+const MIN_VERTICAL_SPEED_RATIO = 0.4;
 const IDLE_BALL_SPEED = BALL_SPEED * 0.65;
 const PADDLE_SPEED = 900;
 const PADDLE_GRID_GAP = 20;
@@ -161,12 +162,14 @@ const simulate = (geometry) => {
   let totalHits = 0;
   let respawnedHits = 0;
   let respawnEscapeSteers = 0;
+  let verticalCorrections = 0;
   let boundaryRecoveries = 0;
   let drainStarted = false;
   let idleMode = false;
   let idleEnteredAt = null;
   const respawnDurations = [];
   const respawnVisibleDurations = [];
+  let minimumActiveVerticalSpeed = Infinity;
 
   const chooseTarget = () => {
     const activeCells = breakableCells.filter((cell) => cell.active);
@@ -200,6 +203,24 @@ const simulate = (geometry) => {
     const angle = clamp(Math.atan2(targetX - ball.x, verticalDistance), -Math.PI / 3, Math.PI / 3);
     ball.vx = BALL_SPEED * Math.sin(angle);
     ball.vy = -BALL_SPEED * Math.cos(angle);
+  };
+
+  const stabilizeBallDirection = () => {
+    const minimumVerticalSpeed = BALL_SPEED * MIN_VERTICAL_SPEED_RATIO;
+    if (Math.abs(ball.vy) >= minimumVerticalSpeed - 0.001) return;
+
+    const verticalDirection =
+      Math.abs(ball.vy) >= 0.001
+        ? Math.sign(ball.vy)
+        : ball.y <= (gridTop + gridBottom) / 2
+          ? 1
+          : -1;
+    const horizontalDirection =
+      Math.abs(ball.vx) >= 0.001 ? Math.sign(ball.vx) : ball.x < width / 2 ? 1 : -1;
+    ball.vy = verticalDirection * minimumVerticalSpeed;
+    ball.vx =
+      horizontalDirection * Math.sqrt(BALL_SPEED ** 2 - minimumVerticalSpeed ** 2);
+    verticalCorrections += 1;
   };
 
   const resolveCellCollision = (cell, previousX, previousY) => {
@@ -364,6 +385,7 @@ const simulate = (geometry) => {
       const timeMs = ((frame - 1) + (subStep + 1) / subSteps) * frameSeconds * 1000;
 
       processRespawns(subStepStartMs);
+      if (!drainStarted) stabilizeBallDirection();
 
       const previousX = ball.x;
       const previousY = ball.y;
@@ -436,6 +458,11 @@ const simulate = (geometry) => {
         ball.vy = -Math.abs(ball.vy);
         boundaryRecoveries += 1;
       }
+
+      if (!drainStarted) {
+        stabilizeBallDirection();
+        minimumActiveVerticalSpeed = Math.min(minimumActiveVerticalSpeed, Math.abs(ball.vy));
+      }
     }
 
     ballFrames.push({ x: ball.x, y: ball.y });
@@ -450,6 +477,12 @@ const simulate = (geometry) => {
   }
   if (respawnedHits === 0) {
     throw new Error('Simulation did not collide with any respawned contribution cell');
+  }
+  const requiredVerticalSpeed = BALL_SPEED * MIN_VERTICAL_SPEED_RATIO;
+  if (minimumActiveVerticalSpeed < requiredVerticalSpeed - 0.01) {
+    throw new Error(
+      `Active-play vertical speed dropped to ${formatNumber(minimumActiveVerticalSpeed, 2)}px/s`
+    );
   }
 
   const hiddenEventCount = breakableCells.reduce(
@@ -530,12 +563,14 @@ const simulate = (geometry) => {
     hiddenEventCount,
     respawnedHits,
     respawnEscapeSteers,
+    verticalCorrections,
     boundaryRecoveries,
     idleEnteredAt,
     activeCellCount: breakableCells.length,
     minimumRespawn,
     maximumRespawn,
     minimumVisibleAfterRespawn,
+    minimumActiveVerticalSpeed,
     minimumTrapMotionSpan,
     maximumFrameTravel,
     ballLoopGap,
@@ -613,11 +648,11 @@ const transformSvg = (source, fileName) => {
     .replace(/(<rect id="paddle"[^>]*\sfill=")[^"]*(")/, `$1${ACCENT}$2`)
     .replace(
       /<desc>[^<]*breakout-contribution-graph[^<]*<\/desc>|<desc>Contribution breakout[^<]*<\/desc>/,
-      '<desc>Contribution breakout with seamless motion and collision-safe 30-40 second brick respawns</desc>'
+      '<desc>Contribution breakout with seamless angled motion and collision-safe 30-40 second brick respawns</desc>'
     )
     .replace(
       /<metadata>[\s\S]*?<\/metadata>/,
-      `<metadata><info><durationMs>${DURATION_MS}</durationMs><drainStartMs>${DRAIN_START_MS}</drainStartMs><idleEnteredAtMs>${formatNumber(simulation.idleEnteredAt, 1)}</idleEnteredAtMs><loopReturnStartMs>${LOOP_RETURN_START_MS}</loopReturnStartMs><recoveryWindowMs>${DURATION_MS - DRAIN_START_MS}</recoveryWindowMs><paddleGridGap>${formatNumber(simulation.paddleGridGap, 1)}</paddleGridGap><respawnMinMs>${RESPAWN_MIN_MS}</respawnMinMs><respawnMaxMs>${RESPAWN_HARD_MAX_MS}</respawnMaxMs><minimumVisibleAfterRespawnMs>${MIN_RESPAWN_VISIBLE_MS}</minimumVisibleAfterRespawnMs><trapWindowMs>${TRAP_WINDOW_MS}</trapWindowMs><minimumTrapMotionSpan>${MIN_TRAP_MOTION_SPAN}</minimumTrapMotionSpan><activeCells>${simulation.activeCellCount}</activeCells><hits>${simulation.totalHits}</hits><transparentRemovals>${simulation.hiddenEventCount}</transparentRemovals><respawnedCellHits>${simulation.respawnedHits}</respawnedCellHits><respawnEscapeSteers>${simulation.respawnEscapeSteers}</respawnEscapeSteers><boundaryRecoveries>${simulation.boundaryRecoveries}</boundaryRecoveries><observedRespawnMinMs>${formatNumber(simulation.minimumRespawn, 1)}</observedRespawnMinMs><observedRespawnMaxMs>${formatNumber(simulation.maximumRespawn, 1)}</observedRespawnMaxMs><observedMinimumVisibleAfterRespawnMs>${formatNumber(simulation.minimumVisibleAfterRespawn, 1)}</observedMinimumVisibleAfterRespawnMs><observedMinimumTrapMotionSpan>${formatNumber(simulation.minimumTrapMotionSpan, 1)}</observedMinimumTrapMotionSpan><observedMaximumFrameTravel>${formatNumber(simulation.maximumFrameTravel, 2)}</observedMaximumFrameTravel><ballLoopGap>${formatNumber(simulation.ballLoopGap, 3)}</ballLoopGap><paddleLoopGap>${formatNumber(simulation.paddleLoopGap, 3)}</paddleLoopGap></info></metadata>`
+      `<metadata><info><durationMs>${DURATION_MS}</durationMs><drainStartMs>${DRAIN_START_MS}</drainStartMs><idleEnteredAtMs>${formatNumber(simulation.idleEnteredAt, 1)}</idleEnteredAtMs><loopReturnStartMs>${LOOP_RETURN_START_MS}</loopReturnStartMs><recoveryWindowMs>${DURATION_MS - DRAIN_START_MS}</recoveryWindowMs><paddleGridGap>${formatNumber(simulation.paddleGridGap, 1)}</paddleGridGap><respawnMinMs>${RESPAWN_MIN_MS}</respawnMinMs><respawnMaxMs>${RESPAWN_HARD_MAX_MS}</respawnMaxMs><minimumVisibleAfterRespawnMs>${MIN_RESPAWN_VISIBLE_MS}</minimumVisibleAfterRespawnMs><minimumVerticalSpeedRatio>${MIN_VERTICAL_SPEED_RATIO}</minimumVerticalSpeedRatio><trapWindowMs>${TRAP_WINDOW_MS}</trapWindowMs><minimumTrapMotionSpan>${MIN_TRAP_MOTION_SPAN}</minimumTrapMotionSpan><activeCells>${simulation.activeCellCount}</activeCells><hits>${simulation.totalHits}</hits><transparentRemovals>${simulation.hiddenEventCount}</transparentRemovals><respawnedCellHits>${simulation.respawnedHits}</respawnedCellHits><respawnEscapeSteers>${simulation.respawnEscapeSteers}</respawnEscapeSteers><verticalCorrections>${simulation.verticalCorrections}</verticalCorrections><boundaryRecoveries>${simulation.boundaryRecoveries}</boundaryRecoveries><observedRespawnMinMs>${formatNumber(simulation.minimumRespawn, 1)}</observedRespawnMinMs><observedRespawnMaxMs>${formatNumber(simulation.maximumRespawn, 1)}</observedRespawnMaxMs><observedMinimumVisibleAfterRespawnMs>${formatNumber(simulation.minimumVisibleAfterRespawn, 1)}</observedMinimumVisibleAfterRespawnMs><observedMinimumActiveVerticalSpeed>${formatNumber(simulation.minimumActiveVerticalSpeed, 2)}</observedMinimumActiveVerticalSpeed><observedMinimumTrapMotionSpan>${formatNumber(simulation.minimumTrapMotionSpan, 1)}</observedMinimumTrapMotionSpan><observedMaximumFrameTravel>${formatNumber(simulation.maximumFrameTravel, 2)}</observedMaximumFrameTravel><ballLoopGap>${formatNumber(simulation.ballLoopGap, 3)}</ballLoopGap><paddleLoopGap>${formatNumber(simulation.paddleLoopGap, 3)}</paddleLoopGap></info></metadata>`
     );
 
   return { svg: transformed, simulation };
@@ -637,6 +672,8 @@ for (const file of files) {
       `${formatNumber(stats.minimumRespawn / 1000, 2)}-${formatNumber(stats.maximumRespawn / 1000, 2)}s observed respawn window, ` +
       `${formatNumber(stats.minimumVisibleAfterRespawn, 1)}ms minimum visible time, ` +
       `${stats.respawnEscapeSteers} anti-trap redirects, ` +
+      `${stats.verticalCorrections} horizontal-stall corrections, ` +
+      `${formatNumber(stats.minimumActiveVerticalSpeed, 1)}px/s minimum active vertical speed, ` +
       `${formatNumber(stats.minimumTrapMotionSpan, 1)}px minimum ${TRAP_WINDOW_MS / 1000}s motion span, ` +
       `${formatNumber(stats.maximumFrameTravel, 2)}px max frame travel, ` +
       `${formatNumber(stats.ballLoopGap, 3)}px loop gap, ` +
