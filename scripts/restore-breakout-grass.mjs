@@ -5,9 +5,9 @@ const DURATION_MS = 150_000;
 const DRAIN_START_MS = 100_000;
 const LOOP_RETURN_START_MS = 145_000;
 const RESPAWN_MIN_MS = 30_000;
-const RESPAWN_TARGET_MAX_MS = 39_000;
+const RESPAWN_TARGET_MAX_MS = 38_500;
 const RESPAWN_HARD_MAX_MS = 40_000;
-const RESPAWN_ESCAPE_MS = 39_500;
+const RESPAWN_ESCAPE_MS = 39_000;
 const RESPAWN_ESCAPE_RETRY_MS = 250;
 const MIN_RESPAWN_VISIBLE_MS = 250;
 const TRAP_WINDOW_MS = 2_000;
@@ -16,6 +16,8 @@ const FPS = 30;
 const BALL_SPEED = 235;
 const IDLE_BALL_SPEED = BALL_SPEED * 0.65;
 const PADDLE_SPEED = 900;
+const PADDLE_GRID_GAP = 20;
+const PADDLE_BOTTOM_MARGIN = 8;
 const ACCENT = '#B6F13A';
 const HIDDEN_FILL = 'transparent';
 
@@ -89,7 +91,7 @@ const parseSvg = (source, palette) => {
   const width = Number(getAttribute(svgTag, 'width'));
   const height = Number(getAttribute(svgTag, 'height'));
   const ballRadius = Number(getAttribute(ballTag, 'r'));
-  const paddleY = Number(getAttribute(paddleTag, 'y'));
+  const sourcePaddleY = Number(getAttribute(paddleTag, 'y'));
   const paddleWidth = Number(getAttribute(paddleTag, 'width'));
   const paddleHeight = Number(getAttribute(paddleTag, 'height'));
 
@@ -125,6 +127,13 @@ const parseSvg = (source, palette) => {
 
   if (cells.length !== 371) {
     throw new Error(`Expected 371 contribution cells, found ${cells.length}`);
+  }
+
+  const gridBottom = Math.max(...cells.map((cell) => cell.y + cell.height));
+  const maximumPaddleY = height - paddleHeight - PADDLE_BOTTOM_MARGIN;
+  const paddleY = Math.min(Math.max(sourcePaddleY, gridBottom + PADDLE_GRID_GAP), maximumPaddleY);
+  if (paddleY - gridBottom < PADDLE_GRID_GAP) {
+    throw new Error('Not enough SVG height to separate the paddle from the contribution grid');
   }
 
   return { width, height, ballRadius, paddleY, paddleWidth, paddleHeight, cells };
@@ -530,7 +539,8 @@ const simulate = (geometry) => {
     minimumTrapMotionSpan,
     maximumFrameTravel,
     ballLoopGap,
-    paddleLoopGap
+    paddleLoopGap,
+    paddleGridGap: paddleY - gridBottom
   };
 };
 
@@ -588,6 +598,10 @@ const transformSvg = (source, fileName) => {
 
   transformed = transformed
     .replace(
+      /<rect id="paddle"[^>]*>/,
+      (paddleTag) => replaceAttribute(paddleTag, 'y', formatNumber(geometry.paddleY, 2))
+    )
+    .replace(
       /(<circle id="ball"[^>]*>)[\s\S]*?(<\/circle>)/,
       `$1${ballAnimation}$2`
     )
@@ -603,7 +617,7 @@ const transformSvg = (source, fileName) => {
     )
     .replace(
       /<metadata>[\s\S]*?<\/metadata>/,
-      `<metadata><info><durationMs>${DURATION_MS}</durationMs><drainStartMs>${DRAIN_START_MS}</drainStartMs><idleEnteredAtMs>${formatNumber(simulation.idleEnteredAt, 1)}</idleEnteredAtMs><loopReturnStartMs>${LOOP_RETURN_START_MS}</loopReturnStartMs><recoveryWindowMs>${DURATION_MS - DRAIN_START_MS}</recoveryWindowMs><respawnMinMs>${RESPAWN_MIN_MS}</respawnMinMs><respawnMaxMs>${RESPAWN_HARD_MAX_MS}</respawnMaxMs><minimumVisibleAfterRespawnMs>${MIN_RESPAWN_VISIBLE_MS}</minimumVisibleAfterRespawnMs><trapWindowMs>${TRAP_WINDOW_MS}</trapWindowMs><minimumTrapMotionSpan>${MIN_TRAP_MOTION_SPAN}</minimumTrapMotionSpan><activeCells>${simulation.activeCellCount}</activeCells><hits>${simulation.totalHits}</hits><transparentRemovals>${simulation.hiddenEventCount}</transparentRemovals><respawnedCellHits>${simulation.respawnedHits}</respawnedCellHits><respawnEscapeSteers>${simulation.respawnEscapeSteers}</respawnEscapeSteers><boundaryRecoveries>${simulation.boundaryRecoveries}</boundaryRecoveries><observedRespawnMinMs>${formatNumber(simulation.minimumRespawn, 1)}</observedRespawnMinMs><observedRespawnMaxMs>${formatNumber(simulation.maximumRespawn, 1)}</observedRespawnMaxMs><observedMinimumVisibleAfterRespawnMs>${formatNumber(simulation.minimumVisibleAfterRespawn, 1)}</observedMinimumVisibleAfterRespawnMs><observedMinimumTrapMotionSpan>${formatNumber(simulation.minimumTrapMotionSpan, 1)}</observedMinimumTrapMotionSpan><observedMaximumFrameTravel>${formatNumber(simulation.maximumFrameTravel, 2)}</observedMaximumFrameTravel><ballLoopGap>${formatNumber(simulation.ballLoopGap, 3)}</ballLoopGap><paddleLoopGap>${formatNumber(simulation.paddleLoopGap, 3)}</paddleLoopGap></info></metadata>`
+      `<metadata><info><durationMs>${DURATION_MS}</durationMs><drainStartMs>${DRAIN_START_MS}</drainStartMs><idleEnteredAtMs>${formatNumber(simulation.idleEnteredAt, 1)}</idleEnteredAtMs><loopReturnStartMs>${LOOP_RETURN_START_MS}</loopReturnStartMs><recoveryWindowMs>${DURATION_MS - DRAIN_START_MS}</recoveryWindowMs><paddleGridGap>${formatNumber(simulation.paddleGridGap, 1)}</paddleGridGap><respawnMinMs>${RESPAWN_MIN_MS}</respawnMinMs><respawnMaxMs>${RESPAWN_HARD_MAX_MS}</respawnMaxMs><minimumVisibleAfterRespawnMs>${MIN_RESPAWN_VISIBLE_MS}</minimumVisibleAfterRespawnMs><trapWindowMs>${TRAP_WINDOW_MS}</trapWindowMs><minimumTrapMotionSpan>${MIN_TRAP_MOTION_SPAN}</minimumTrapMotionSpan><activeCells>${simulation.activeCellCount}</activeCells><hits>${simulation.totalHits}</hits><transparentRemovals>${simulation.hiddenEventCount}</transparentRemovals><respawnedCellHits>${simulation.respawnedHits}</respawnedCellHits><respawnEscapeSteers>${simulation.respawnEscapeSteers}</respawnEscapeSteers><boundaryRecoveries>${simulation.boundaryRecoveries}</boundaryRecoveries><observedRespawnMinMs>${formatNumber(simulation.minimumRespawn, 1)}</observedRespawnMinMs><observedRespawnMaxMs>${formatNumber(simulation.maximumRespawn, 1)}</observedRespawnMaxMs><observedMinimumVisibleAfterRespawnMs>${formatNumber(simulation.minimumVisibleAfterRespawn, 1)}</observedMinimumVisibleAfterRespawnMs><observedMinimumTrapMotionSpan>${formatNumber(simulation.minimumTrapMotionSpan, 1)}</observedMinimumTrapMotionSpan><observedMaximumFrameTravel>${formatNumber(simulation.maximumFrameTravel, 2)}</observedMaximumFrameTravel><ballLoopGap>${formatNumber(simulation.ballLoopGap, 3)}</ballLoopGap><paddleLoopGap>${formatNumber(simulation.paddleLoopGap, 3)}</paddleLoopGap></info></metadata>`
     );
 
   return { svg: transformed, simulation };
@@ -626,6 +640,7 @@ for (const file of files) {
       `${formatNumber(stats.minimumTrapMotionSpan, 1)}px minimum ${TRAP_WINDOW_MS / 1000}s motion span, ` +
       `${formatNumber(stats.maximumFrameTravel, 2)}px max frame travel, ` +
       `${formatNumber(stats.ballLoopGap, 3)}px loop gap, ` +
-      `${stats.boundaryRecoveries} boundary recoveries`
+      `${stats.boundaryRecoveries} boundary recoveries, ` +
+      `${formatNumber(stats.paddleGridGap, 1)}px paddle gap`
   );
 }
