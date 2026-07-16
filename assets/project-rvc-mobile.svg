@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="250" viewBox="0 0 390 250" role="img" aria-labelledby="title description">
+  <title id="title">RVC-Learn-hub</title><desc id="description">Distributed RVC training orchestration platform built with Python, FastAPI, and Next.js.</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0A0A0B"/><stop offset="1" stop-color="#11170D"/></linearGradient><filter id="g" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+  <rect x="1" y="1" width="388" height="248" rx="16" fill="url(#bg)" stroke="#3F3F46" stroke-width="2"/><rect x="1" y="1" width="7" height="248" rx="4" fill="#B6F13A"/>
+  <text x="25" y="35" fill="#71717A" font-family="ui-monospace, monospace" font-size="9" font-weight="800" letter-spacing="1.2">SHIP_01 / DISTRIBUTED AI TRAINING</text><circle cx="356" cy="31" r="4" fill="#B6F13A" filter="url(#g)"/>
+  <text x="24" y="82" fill="#FAFAFA" font-family="Inter, -apple-system, Segoe UI, sans-serif" font-size="27" font-weight="800" letter-spacing="-0.6">RVC-Learn-hub</text>
+  <text x="24" y="116" fill="#A1A1AA" font-family="Pretendard, -apple-system, Segoe UI, sans-serif" font-size="13">여러 GPU 서버의 학습·데이터셋·작업·모델을</text><text x="24" y="138" fill="#A1A1AA" font-family="Pretendard, -apple-system, Segoe UI, sans-serif" font-size="13">한곳에서 오케스트레이션</text>
+  <path d="M24 161H366" stroke="#3F3F46" stroke-opacity="0.65"/>
+  <g transform="translate(24 180)" font-family="ui-monospace, monospace" font-size="10" text-anchor="middle"><g><rect width="88" height="34" rx="6" fill="#14180F" stroke="#B6F13A" stroke-opacity="0.4"/><text x="44" y="22" fill="#D4D4D8">PYTHON</text></g><g transform="translate(98)"><rect width="88" height="34" rx="6" fill="#14180F" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="44" y="22" fill="#D4D4D8">FASTAPI</text></g><g transform="translate(196)"><rect width="88" height="34" rx="6" fill="#14180F" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="44" y="22" fill="#D4D4D8">NEXT.JS</text></g></g>
+  <g transform="translate(345 184)" fill="none" stroke="#B6F13A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 4L10 14L0 24"/></g>
+</svg>

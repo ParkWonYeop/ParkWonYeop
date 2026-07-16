@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="92" viewBox="0 0 390 92" role="img" aria-label="Stay curious, ship reliable, keep it simple">
+  <defs><linearGradient id="l" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#B6F13A" stop-opacity="0"/><stop offset="0.5" stop-color="#B6F13A"/><stop offset="1" stop-color="#B6F13A" stop-opacity="0"/></linearGradient></defs>
+  <rect x="1" y="1" width="388" height="90" rx="14" fill="#09090B" stroke="#27272A" stroke-width="2"/><path d="M24 22H366" stroke="url(#l)" stroke-opacity="0.35"/>
+  <text x="195" y="53" text-anchor="middle" fill="#A1A1AA" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" font-weight="700" letter-spacing="1.1">STAY CURIOUS · SHIP RELIABLE</text><text x="195" y="70" text-anchor="middle" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" letter-spacing="1.4">KEEP IT SIMPLE</text>
+</svg>

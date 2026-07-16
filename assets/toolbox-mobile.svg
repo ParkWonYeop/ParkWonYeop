@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="720" viewBox="0 0 390 720" role="img" aria-labelledby="title description">
+  <title id="title">Technical Toolbox System Map</title>
+  <desc id="description">Mobile map of backend, data, infrastructure, and tooling skills.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#09090B"/><stop offset="1" stop-color="#0D110A"/></linearGradient>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#FAFAFA" opacity="0.045"/></pattern>
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect x="1" y="1" width="388" height="718" rx="18" fill="url(#bg)" stroke="#27272A" stroke-width="2"/><rect x="1" y="1" width="388" height="718" rx="18" fill="url(#dots)"/>
+  <text x="22" y="40" fill="#B6F13A" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="800" letter-spacing="1.5">01 / TOOLBOX.MAP</text>
+  <text x="368" y="40" text-anchor="end" fill="#52525B" font-family="ui-monospace, monospace" font-size="8" letter-spacing="0.8">19 NODES · 03 LAYERS</text>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+    <g transform="translate(20 62)">
+      <rect width="350" height="224" rx="12" fill="#0A0A0B" stroke="#3F3F46"/>
+      <text x="16" y="28" fill="#71717A" font-size="10" font-weight="800" letter-spacing="1.3">BACKEND / 07</text><path d="M16 40H334" stroke="#3F3F46" stroke-dasharray="3 7"/>
+      <g transform="translate(16 54)" font-size="11" text-anchor="middle">
+        <g><rect width="153" height="36" rx="7" fill="#10110E" stroke="#B6F13A" stroke-opacity="0.5"/><text x="76.5" y="23" fill="#E4E4E7">KOTLIN</text></g>
+        <g transform="translate(165)"><rect width="153" height="36" rx="7" fill="#10110E" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="76.5" y="23" fill="#E4E4E7">JAVA</text></g>
+        <g transform="translate(0 44)"><rect width="153" height="36" rx="7" fill="#10110E" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="76.5" y="23" fill="#E4E4E7">PYTHON</text></g>
+        <g transform="translate(165 44)"><rect width="153" height="36" rx="7" fill="#10110E" stroke="#B6F13A" stroke-opacity="0.26"/><text x="76.5" y="23" fill="#E4E4E7">SPRING BOOT</text></g>
+        <g transform="translate(0 88)"><rect width="153" height="36" rx="7" fill="#10110E" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="76.5" y="23" fill="#E4E4E7">FASTAPI</text></g>
+        <g transform="translate(165 88)"><rect width="153" height="36" rx="7" fill="#10110E" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="76.5" y="23" fill="#E4E4E7">NESTJS</text></g>
+        <g transform="translate(0 132)"><rect width="318" height="36" rx="7" fill="#10110E" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="159" y="23" fill="#E4E4E7">MYBATIS</text></g>
+      </g>
+    </g>
+    <g transform="translate(20 300)">
+      <rect width="350" height="180" rx="12" fill="#0A0A0B" stroke="#3F3F46"/>
+      <text x="16" y="28" fill="#71717A" font-size="10" font-weight="800" letter-spacing="1.3">DATA / 06</text><path d="M16 40H334" stroke="#3F3F46" stroke-dasharray="3 7"/>
+      <g transform="translate(16 54)" font-size="11" text-anchor="middle">
+        <g><rect width="153" height="36" rx="7" fill="#10110E" stroke="#B6F13A" stroke-opacity="0.38"/><text x="76.5" y="23" fill="#E4E4E7">POSTGRESQL</text></g>
+        <g transform="translate(165)"><rect width="153" height="36" rx="7" fill="#10110E" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="76.5" y="23" fill="#E4E4E7">MYSQL</text></g>
+        <g transform="translate(0 44)"><rect width="153" height="36" rx="7" fill="#10110E" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="76.5" y="23" fill="#E4E4E7">REDIS</text></g>
+        <g transform="translate(165 44)"><rect width="153" height="36" rx="7" fill="#10110E" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="76.5" y="23" fill="#E4E4E7">MONGODB</text></g>
+        <g transform="translate(0 88)"><rect width="153" height="36" rx="7" fill="#10110E" stroke="#B6F13A" stroke-opacity="0.22"/><text x="76.5" y="23" fill="#E4E4E7">ELASTICSEARCH</text></g>
+        <g transform="translate(165 88)"><rect width="153" height="36" rx="7" fill="#10110E" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="76.5" y="23" fill="#E4E4E7">MINIO</text></g>
+      </g>
+    </g>
+    <g transform="translate(20 494)">
+      <rect width="350" height="180" rx="12" fill="#0A0A0B" stroke="#3F3F46"/>
+      <text x="16" y="28" fill="#71717A" font-size="10" font-weight="800" letter-spacing="1.3">INFRA / 06</text><path d="M16 40H334" stroke="#3F3F46" stroke-dasharray="3 7"/>
+      <g transform="translate(16 54)" font-size="11" text-anchor="middle">
+        <g><rect width="153" height="36" rx="7" fill="#10110E" stroke="#B6F13A" stroke-opacity="0.5"/><text x="76.5" y="23" fill="#E4E4E7">DOCKER</text></g>
+        <g transform="translate(165)"><rect width="153" height="36" rx="7" fill="#10110E" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="76.5" y="23" fill="#E4E4E7">LINUX</text></g>
+        <g transform="translate(0 44)"><rect width="153" height="36" rx="7" fill="#10110E" stroke="#B6F13A" stroke-opacity="0.28"/><text x="76.5" y="23" fill="#E4E4E7">PROXMOX</text></g>
+        <g transform="translate(165 44)"><rect width="153" height="36" rx="7" fill="#10110E" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="76.5" y="23" fill="#E4E4E7">GIT</text></g>
+        <g transform="translate(0 88)"><rect width="153" height="36" rx="7" fill="#10110E" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="76.5" y="23" fill="#E4E4E7">LOGSTASH</text></g>
+        <g transform="translate(165 88)"><rect width="153" height="36" rx="7" fill="#10110E" stroke="#FAFAFA" stroke-opacity="0.14"/><text x="76.5" y="23" fill="#E4E4E7">MLFLOW</text></g>
+      </g>
+    </g>
+  </g>
+  <g transform="translate(24 704)" font-family="ui-monospace, monospace" font-size="9" letter-spacing="1"><circle cx="5" cy="-3" r="5" fill="#B6F13A" filter="url(#glow)"><animate attributeName="opacity" values="0.25;1;0.25" dur="2.2s" repeatCount="indefinite"/></circle><text x="19" fill="#71717A">REQUEST FLOW</text><path d="M103 -3H340" stroke="#B6F13A" stroke-opacity="0.2"/><circle cx="103" cy="-3" r="3" fill="#B6F13A"><animate attributeName="cx" values="103;340" dur="5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.9;1" dur="5s" repeatCount="indefinite"/></circle></g>
+</svg>
