@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>Profile tiles</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&display=block">
+<style>
+  :root {
+    --ink: #0A0C11;
+    --paper: #F5F1E8;
+    --soft: rgba(245, 241, 232, 0.74);
+    --faint: rgba(245, 241, 232, 0.5);
+    --amber: #FFB547;
+    --sans: "Pretendard Variable", Pretendard, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  html, body { margin: 0; background: transparent; }
+  section {
+    display: none; position: relative; overflow: hidden; border-radius: 28px;
+    font-family: var(--sans); color: var(--paper); -webkit-font-smoothing: antialiased;
+  }
+  section:target { display: block; }
+  section::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: var(--grain); opacity: 0.07; mix-blend-mode: overlay;
+  }
+  .mono { font-family: var(--mono); font-weight: 600; font-size: 12.5px; letter-spacing: 0.16em; text-transform: uppercase; }
+
+  /* ---------- hero ---------- */
+  .hero { background: radial-gradient(760px 420px at 82% 70%, rgba(255, 150, 40, 0.16), transparent 70%), var(--ink); }
+  .hero .map { position: absolute; inset: 0; }
+  .hero .map .stations text { font: 600 10.5px var(--mono); letter-spacing: 0.14em; fill: rgba(255, 227, 176, 0.78); }
+  .hero .shade { position: absolute; inset: 0; }
+  #hero .shade { background: linear-gradient(90deg, rgba(10, 12, 17, 0.97) 0%, rgba(10, 12, 17, 0.9) 36%, rgba(10, 12, 17, 0.35) 58%, rgba(10, 12, 17, 0) 76%); }
+  #hero-mobile .shade { background: linear-gradient(180deg, rgba(10, 12, 17, 0.98) 0%, rgba(10, 12, 17, 0.92) 44%, rgba(10, 12, 17, 0.2) 68%, rgba(10, 12, 17, 0.55) 100%); }
+  .hero .content { position: absolute; inset: 0; display: flex; flex-direction: column; }
+  #hero .content { padding: 46px 56px 50px; }
+  #hero-mobile .content { padding: 40px 40px 44px; }
+  .hero .top { display: flex; justify-content: space-between; color: var(--faint); }
+  .hero h1 { margin: auto 0 0; font-weight: 800; letter-spacing: -0.045em; line-height: 1.06; }
+  #hero h1 { font-size: 86px; }
+  #hero-mobile h1 { margin: 64px 0 0; font-size: 66px; }
+  .hero h1 em { font-style: normal; color: var(--amber); }
+  .hero .lede { margin: 22px 0 0; font-size: 19px; font-weight: 500; line-height: 1.62; color: var(--soft); letter-spacing: -0.01em; }
+  #hero-mobile .lede { font-size: 21px; }
+  .hero .services { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 34px; }
+  #hero-mobile .services { margin-top: auto; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 10px; padding: 9px 15px 9px 13px; border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.13); background: rgba(10, 12, 17, 0.6);
+    font: 600 13px var(--mono); color: var(--paper);
+  }
+  #hero-mobile .pill { font-size: 15px; padding: 11px 17px 11px 15px; }
+  .pill i { width: 7px; height: 7px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 3px rgba(255, 181, 71, 0.18), 0 0 12px rgba(255, 181, 71, 0.9); }
+  .credit { position: absolute; right: 22px; bottom: 14px; font: 500 9.5px var(--mono); color: rgba(245, 241, 232, 0.34); }
+
+  /* ---------- project tiles ---------- */
+  .tile .copy { position: absolute; left: 56px; top: 54px; bottom: 54px; width: 380px; display: flex; flex-direction: column; z-index: 2; }
+  .tile .idx { color: var(--faint); }
+  .tile h2 { margin: 26px 0 0; font-size: 62px; font-weight: 800; letter-spacing: -0.045em; line-height: 1.02; }
+  .tile p { margin: 22px 0 0; font-size: 23px; font-weight: 600; line-height: 1.5; letter-spacing: -0.02em; color: var(--soft); }
+  .tile .url { margin-top: auto; display: flex; align-items: center; gap: 10px; color: var(--paper); letter-spacing: 0.08em; text-transform: none; font-size: 14px; }
+  .tile .url::before { content: "↗"; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: rgba(255, 255, 255, 0.14); letter-spacing: 0; }
+  .win {
+    position: absolute; border-radius: 14px; overflow: hidden; background: #fff;
+    box-shadow: 0 50px 90px -30px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+  .win .bar { height: 34px; display: flex; align-items: center; gap: 7px; padding: 0 14px; background: #F4F4F5; border-bottom: 1px solid rgba(0, 0, 0, 0.06); }
+  .win .bar i { width: 10px; height: 10px; border-radius: 50%; background: #FF5F57; }
+  .win .bar i + i { background: #FEBC2E; }
+  .win .bar i + i + i { background: #28C840; }
+  .win .bar span { margin-left: 12px; padding: 4px 12px; border-radius: 6px; background: rgba(0, 0, 0, 0.05); font: 500 12px var(--mono); color: #6B7280; }
+  .win.dark { background: #16181D; }
+  .win.dark .bar { background: #1C1E24; border-bottom-color: rgba(255, 255, 255, 0.06); }
+  .win.dark .bar span { background: rgba(255, 255, 255, 0.06); color: #9CA3AF; }
+  .win img { display: block; width: 100%; }
+  .win.main { left: 468px; top: 62px; width: 790px; }
+  .win.crop { right: 36px; bottom: 36px; border-radius: 12px; }
+  .win.crop div { background-size: cover; }
+
+  /* portrait variants for phones: copy on top, one window bleeding off the bottom-right */
+  .tile.m .copy { left: 40px; top: 40px; right: 40px; bottom: auto; width: auto; }
+  .tile.m h2 { margin-top: 20px; font-size: 56px; }
+  .tile.m p { margin-top: 16px; font-size: 24px; }
+  .tile.m .url { margin-top: 22px; font-size: 16px; }
+  .tile.m .win.main { left: 40px; top: 348px; width: 640px; }
+
+  .wnote { background: radial-gradient(900px 560px at 88% -10%, rgba(140, 185, 255, 0.5), transparent 62%), linear-gradient(150deg, #2B6FF0 0%, #1756D6 46%, #0A2C80 100%); }
+  .r08 { background: radial-gradient(720px 480px at 80% 108%, rgba(255, 62, 46, 0.55), transparent 64%), radial-gradient(520px 420px at -5% -10%, rgba(92, 104, 220, 0.28), transparent 62%), linear-gradient(160deg, #13173A 0%, #07081A 100%); }
+  .blog { background: radial-gradient(820px 520px at 92% -8%, rgba(174, 222, 150, 0.36), transparent 62%), linear-gradient(150deg, #43743F 0%, #2C5230 48%, #142918 100%); }
+</style>
+</head>
+<body>
+
+<section id="hero" class="hero" style="width:1200px;height:520px">
+  <!--map:hero-->
+  <div class="shade"></div>
+  <div class="content">
+    <div class="top mono"><span>Park Won Yeop · 박원엽</span><span>Backend Engineer — Seoul</span></div>
+    <h1>직접 만들고,<br>직접 <em>운영</em>합니다.</h1>
+    <p class="lede">Kotlin · Spring Boot 백엔드 엔지니어.<br>블로그부터 게임 서버까지, 만든 건 직접 띄우고 지킵니다.</p>
+    <div class="services"><span class="pill"><i></i>blog.wypark.me</span><span class="pill"><i></i>race.wanote.net</span><span class="pill"><i></i>wanote.net</span></div>
+  </div>
+  <div class="credit">TEHERAN-RO · MAP DATA © OPENSTREETMAP CONTRIBUTORS</div>
+</section>
+
+<section id="hero-mobile" class="hero" style="width:600px;height:760px">
+  <!--map:hero-mobile-->
+  <div class="shade"></div>
+  <div class="content">
+    <div class="top mono"><span>Park Won Yeop · 박원엽</span><span>Seoul</span></div>
+    <h1>직접 만들고,<br>직접 <em>운영</em>합니다.</h1>
+    <p class="lede">Kotlin · Spring Boot 백엔드 엔지니어.<br>블로그부터 게임 서버까지,<br>만든 건 직접 띄우고 지킵니다.</p>
+    <div class="services"><span class="pill"><i></i>blog.wypark.me</span><span class="pill"><i></i>race.wanote.net</span><span class="pill"><i></i>wanote.net</span></div>
+  </div>
+  <div class="credit">MAP DATA © OPENSTREETMAP CONTRIBUTORS</div>
+</section>
+
+<section id="project-wnote" class="tile wnote" style="width:1200px;height:560px">
+  <div class="copy">
+    <div class="idx mono">01 — Document workspace</div>
+    <h2>WaNote</h2>
+    <p>노션처럼 쓰고,<br>옵시디언처럼 잇는 문서 앱</p>
+    <div class="url mono">wanote.net</div>
+  </div>
+  <div class="win main"><div class="bar"><i></i><i></i><i></i><span>wanote.net</span></div><img src="shots/wnote-doc.webp" alt=""></div>
+  <div class="win dark crop" style="width:380px;z-index:3"><div class="bar"><i></i><i></i><i></i><span>그래프</span></div><div style="height:250px;background-image:url(shots/wnote-graph.webp);background-size:900px auto;background-position:-300px -165px"></div></div>
+</section>
+
+<section id="project-r08" class="tile r08" style="width:1200px;height:560px">
+  <div class="copy">
+    <div class="idx mono">02 — Multiplayer racing</div>
+    <h2>R-08<br>Night Drive</h2>
+    <p>강남 밤거리를 최대 10명이<br>함께 달리는 브라우저 레이싱</p>
+    <div class="url mono">race.wanote.net</div>
+  </div>
+  <div class="win dark main"><div class="bar"><i></i><i></i><i></i><span>race.wanote.net</span></div><img src="shots/r08-drive.webp" alt=""></div>
+</section>
+
+<section id="project-blog" class="tile blog" style="width:1200px;height:560px">
+  <div class="copy">
+    <div class="idx mono">03 — Self-hosted blog</div>
+    <h2>WYPark Blog</h2>
+    <p>글부터 Maia 체스까지,<br>홈서버에서 직접 운영하는 블로그</p>
+    <div class="url mono">blog.wypark.me</div>
+  </div>
+  <div class="win main"><div class="bar"><i></i><i></i><i></i><span>blog.wypark.me</span></div><img src="shots/blog-home.webp" alt=""></div>
+  <div class="win dark crop" style="width:380px;z-index:3"><div class="bar"><i></i><i></i><i></i><span>Reader</span></div><div style="height:250px;background-image:url(shots/blog-reader.webp);background-size:760px auto;background-position:-205px -130px"></div></div>
+</section>
+
+<section id="project-wnote-mobile" class="tile m wnote" style="width:600px;height:700px">
+  <div class="copy">
+    <div class="idx mono">01 — Document workspace</div>
+    <h2>WaNote</h2>
+    <p>노션처럼 쓰고,<br>옵시디언처럼 잇는 문서 앱</p>
+    <div class="url mono">wanote.net</div>
+  </div>
+  <div class="win main"><div class="bar"><i></i><i></i><i></i><span>wanote.net</span></div><img src="shots/wnote-doc.webp" alt=""></div>
+</section>
+
+<section id="project-r08-mobile" class="tile m r08" style="width:600px;height:700px">
+  <div class="copy">
+    <div class="idx mono">02 — Multiplayer racing</div>
+    <h2>R-08 Night Drive</h2>
+    <p>강남 밤거리를 최대 10명이<br>함께 달리는 브라우저 레이싱</p>
+    <div class="url mono">race.wanote.net</div>
+  </div>
+  <div class="win dark main"><div class="bar"><i></i><i></i><i></i><span>race.wanote.net</span></div><img src="shots/r08-drive.webp" alt=""></div>
+</section>
+
+<section id="project-blog-mobile" class="tile m blog" style="width:600px;height:700px">
+  <div class="copy">
+    <div class="idx mono">03 — Self-hosted blog</div>
+    <h2>WYPark Blog</h2>
+    <p>글부터 Maia 체스까지,<br>홈서버에서 직접 운영하는 블로그</p>
+    <div class="url mono">blog.wypark.me</div>
+  </div>
+  <div class="win main"><div class="bar"><i></i><i></i><i></i><span>blog.wypark.me</span></div><img src="shots/blog-home.webp" alt=""></div>
+</section>
+
+</body>
+</html>

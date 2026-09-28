@@ -19,7 +19,7 @@ const IDLE_BALL_SPEED = BALL_SPEED * 0.65;
 const PADDLE_SPEED = 900;
 const PADDLE_GRID_GAP = 20;
 const PADDLE_BOTTOM_MARGIN = 8;
-const ACCENT = '#B6F13A';
+const ACCENT = '#FFB547';
 const HIDDEN_FILL = 'transparent';
 
 const palettes = {
@@ -27,20 +27,20 @@ const palettes = {
     none: '#EBEDF0',
     colors: new Map([
       ['#ebedf0', '#EBEDF0'],
-      ['#9be9a8', '#D9F99D'],
-      ['#40c463', '#BEF264'],
-      ['#30a14e', '#84CC16'],
-      ['#216e39', '#3F6212']
+      ['#9be9a8', '#FFE4B8'],
+      ['#40c463', '#FFC46B'],
+      ['#30a14e', '#F59E0B'],
+      ['#216e39', '#B45309']
     ])
   },
   dark: {
     none: '#161B22',
     colors: new Map([
       ['#161b22', '#161B22'],
-      ['#0e4429', '#365314'],
-      ['#006d32', '#4D7C0F'],
-      ['#26a641', '#84CC16'],
-      ['#39d353', '#BEF264']
+      ['#0e4429', '#3D2A0C'],
+      ['#006d32', '#7A4A0A'],
+      ['#26a641', '#D98B0B'],
+      ['#39d353', '#FFC061']
     ])
   }
 };

@@ -16,7 +16,7 @@ const postUrl = (slug) =>
   `https://blog.wypark.me/posts/${encodeURIComponent(slug).replace(/[()]/g, (c) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`)}`;
 
 const list = posts
-  .map((p) => `- [${escapeText(p.title)}](${postUrl(p.slug)}) · ${p.createdAt.slice(0, 10)}`)
+  .map((p) => `- [${escapeText(p.title)}](${postUrl(p.slug)}) <sub>${p.createdAt.slice(0, 10).replaceAll("-", ".")}</sub>`)
   .join("\n");
 
 const readme = await readFile(file, "utf8");
