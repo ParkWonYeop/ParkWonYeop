@@ -66,4 +66,3 @@ OSM 기반 강남 지도에서 최대 10명이 함께 달리는 브라우저 레
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ParkWonYeop/ParkWonYeop/output/breakout-contribution-graph-dark.svg" />
   <img src="https://raw.githubusercontent.com/ParkWonYeop/ParkWonYeop/output/breakout-contribution-graph.svg" width="100%" alt="GitHub contributions played as a breakout game" />
 </picture>
-<p align="center"><sub>지난 1년의 기여 그래프로 하는 벽돌깨기 · 매일 갱신</sub></p>
