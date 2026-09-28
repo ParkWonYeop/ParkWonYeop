@@ -15,8 +15,8 @@
       <path d="M30 0H0V30" fill="none" stroke="#FAFAFA" stroke-opacity="0.035" />
     </pattern>
     <clipPath id="frame"><rect x="1" y="1" width="1198" height="358" rx="22" /></clipPath>
-    <clipPath id="typing"><rect x="55" y="205" width="0" height="32">
-      <animate attributeName="width" calcMode="discrete" values="0;0;12.22;24.44;36.67;48.89;61.11;73.33;85.56;97.78;110;122.22;134.44;146.67;158.89;171.11;183.33;195.56;207.78;220;232.22;244.44;256.67;268.89;281.11;293.33;305.56;317.78;330;330;0" keyTimes="0;0.08;0.0978;0.1156;0.1333;0.1511;0.1689;0.1867;0.2044;0.2222;0.24;0.2578;0.2756;0.2933;0.3111;0.3289;0.3467;0.3644;0.3822;0.4;0.4178;0.4356;0.4533;0.4711;0.4889;0.5067;0.5244;0.5422;0.56;0.92;1" dur="8s" repeatCount="indefinite" />
+    <clipPath id="typing"><rect x="55" y="205" width="330" height="32">
+      <animate attributeName="width" calcMode="discrete" values="0;0;12.22;24.44;36.67;48.89;61.11;73.33;85.56;97.78;110;122.22;134.44;146.67;158.89;171.11;183.33;195.56;207.78;220;232.22;244.44;256.67;268.89;281.11;293.33;305.56;317.78;330" keyTimes="0;0.08;0.0978;0.1156;0.1333;0.1511;0.1689;0.1867;0.2044;0.2222;0.24;0.2578;0.2756;0.2933;0.3111;0.3289;0.3467;0.3644;0.3822;0.4;0.4178;0.4356;0.4533;0.4711;0.4889;0.5067;0.5244;0.5422;0.56" dur="8s" fill="freeze" />
     </rect></clipPath>
     <filter id="lime-glow" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="5" result="blur" />
@@ -44,33 +44,29 @@
     <g clip-path="url(#typing)">
       <text x="55" y="230" textLength="330" lengthAdjust="spacingAndGlyphs" fill="#B6F13A" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19" font-weight="700" letter-spacing="0.8">$ BUILDING RELIABLE SYSTEMS</text>
     </g>
-    <rect x="55" y="211" width="10" height="23" fill="#B6F13A" filter="url(#lime-glow)">
-      <animate attributeName="x" calcMode="discrete" values="55;55;72.22;84.44;96.67;108.89;121.11;133.33;145.56;157.78;170;182.22;194.44;206.67;218.89;231.11;243.33;255.56;267.78;280;292.22;304.44;316.67;328.89;341.11;353.33;365.56;377.78;390;390;55" keyTimes="0;0.08;0.0978;0.1156;0.1333;0.1511;0.1689;0.1867;0.2044;0.2222;0.24;0.2578;0.2756;0.2933;0.3111;0.3289;0.3467;0.3644;0.3822;0.4;0.4178;0.4356;0.4533;0.4711;0.4889;0.5067;0.5244;0.5422;0.56;0.92;1" dur="8s" repeatCount="indefinite" />
+    <rect x="390" y="211" width="10" height="23" fill="#B6F13A" filter="url(#lime-glow)">
+      <animate attributeName="x" calcMode="discrete" values="55;55;72.22;84.44;96.67;108.89;121.11;133.33;145.56;157.78;170;182.22;194.44;206.67;218.89;231.11;243.33;255.56;267.78;280;292.22;304.44;316.67;328.89;341.11;353.33;365.56;377.78;390" keyTimes="0;0.08;0.0978;0.1156;0.1333;0.1511;0.1689;0.1867;0.2044;0.2222;0.24;0.2578;0.2756;0.2933;0.3111;0.3289;0.3467;0.3644;0.3822;0.4;0.4178;0.4356;0.4533;0.4711;0.4889;0.5067;0.5244;0.5422;0.56" dur="8s" fill="freeze" />
       <animate attributeName="opacity" values="1;0.2;1;0.2;1" dur="0.8s" repeatCount="indefinite" />
     </rect>
 
-    <g transform="translate(55 278)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="650" letter-spacing="1.2">
-      <text fill="#A1A1AA">PERFORMANCE</text><text x="97" fill="#3F3F46">/</text>
-      <text x="115" fill="#A1A1AA">MODERNIZATION</text><text x="239" fill="#3F3F46">/</text>
-      <text x="257" fill="#A1A1AA">OPERATIONS</text>
-    </g>
+    <text x="55" y="278" fill="#A1A1AA" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="650" letter-spacing="1.2">PERFORMANCE <tspan fill="#52525B">/</tspan> MODERNIZATION <tspan fill="#52525B">/</tspan> OPERATIONS</text>
 
-    <g transform="translate(930 48)">
-      <text x="0" y="0" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" letter-spacing="1.5">LIVE SYSTEM MAP</text>
+    <g transform="translate(930 48)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+      <text x="0" y="0" fill="#71717A" font-size="11" letter-spacing="1.5">SELF-HOSTED · PROXMOX</text>
       <g transform="translate(0 28)">
         <rect width="210" height="52" rx="8" fill="#0A0A0B" stroke="#B6F13A" stroke-opacity="0.5" />
         <circle cx="18" cy="26" r="5" fill="#B6F13A"><animate attributeName="opacity" values="0.25;1;0.25" dur="2s" repeatCount="indefinite" /></circle>
-        <text x="36" y="23" fill="#E4E4E7" font-family="ui-monospace, monospace" font-size="11">API_GATEWAY</text>
-        <text x="36" y="38" fill="#52525B" font-family="ui-monospace, monospace" font-size="9">HEALTHY · 17ms</text>
+        <text x="36" y="23" fill="#E4E4E7" font-size="12">BLOG.WYPARK.ME</text>
+        <text x="36" y="39" fill="#71717A" font-size="10">KOTLIN · SPRING BOOT</text>
       </g>
       <path d="M105 80V102" stroke="#B6F13A" stroke-dasharray="3 5"><animate attributeName="stroke-dashoffset" values="8;0" dur="1s" repeatCount="indefinite" /></path>
       <g transform="translate(0 102)">
         <rect width="98" height="52" rx="8" fill="#0A0A0B" stroke="#FAFAFA" stroke-opacity="0.16" />
-        <text x="13" y="23" fill="#D4D4D8" font-family="ui-monospace, monospace" font-size="10">WORKER_01</text>
-        <text x="13" y="38" fill="#52525B" font-family="ui-monospace, monospace" font-size="9">ACTIVE</text>
+        <text x="13" y="23" fill="#D4D4D8" font-size="11">POSTGRESQL</text>
+        <text x="13" y="39" fill="#71717A" font-size="10">v17</text>
         <rect x="112" width="98" height="52" rx="8" fill="#0A0A0B" stroke="#FAFAFA" stroke-opacity="0.16" />
-        <text x="125" y="23" fill="#D4D4D8" font-family="ui-monospace, monospace" font-size="10">WORKER_02</text>
-        <text x="125" y="38" fill="#52525B" font-family="ui-monospace, monospace" font-size="9">ACTIVE</text>
+        <text x="125" y="23" fill="#D4D4D8" font-size="11">REDIS</text>
+        <text x="125" y="39" fill="#71717A" font-size="10">v7</text>
       </g>
       <g transform="translate(0 178)" fill="#B6F13A">
         <rect width="11" height="11" rx="2" opacity="0.18" />
@@ -81,7 +77,7 @@
       </g>
     </g>
 
-    <text x="1148" y="329" text-anchor="end" fill="#52525B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" letter-spacing="1.6">SEOUL · UTC+09 / 2026</text>
+    <text x="1148" y="329" text-anchor="end" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" letter-spacing="1.6">SEOUL · UTC+09</text>
   </g>
   <rect x="1" y="1" width="1198" height="358" rx="22" fill="none" stroke="#FAFAFA" stroke-opacity="0.13" stroke-width="2" />
 </svg>

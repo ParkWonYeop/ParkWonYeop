@@ -1,0 +1,32 @@
+name: Refresh latest blog posts
+
+on:
+  schedule:
+    - cron: "47 */6 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: blog-posts
+  cancel-in-progress: true
+
+jobs:
+  update:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out profile source
+        uses: actions/checkout@v4
+
+      - name: Fetch latest posts
+        run: node scripts/update-blog-posts.mjs README.md
+
+      - name: Commit when the list changed
+        run: |
+          git diff --quiet README.md && exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: refresh latest blog posts" README.md
+          git push
