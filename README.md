@@ -5,7 +5,7 @@
   </picture>
 </a>
 
-복잡한 문제를 끝까지 추적하는 백엔드 엔지니어 박원엽입니다. 병목은 재서 줄이고, 레거시는 안전하게 바꾸고, 만든 서비스는 직접 배포해 운영하면서 장애에 강하게 다듬습니다.
+복잡한 문제를 끝까지 추적하는 백엔드 엔지니어 박원엽입니다. 병목은 재서 줄이고, 레거시는 안전하게 바꾸고, 만든 서비스는 직접 배포해 운영하면서 장애를 다듬습니다.
 
 **Main** &nbsp;`Kotlin` `Spring Boot` `PostgreSQL` `Docker`<br />
 **Also** &nbsp;Java · Python · TypeScript · FastAPI · NestJS · MyBatis · MySQL · Redis · MongoDB · Elasticsearch · MinIO · Linux · Proxmox · Git · Logstash · MLflow
