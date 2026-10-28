@@ -55,9 +55,9 @@ OSM 기반 강남 지도에서 최대 10명이 함께 달리는 브라우저 레
 ### 최근 글
 
 <!-- posts:start -->
+- [CPython JIT 개발 중단과 PEP 836 철회](https://blog.wypark.me/posts/cpython-jit-pep-836-withdrawal) <sub>2026.10.28</sub>
+- [PHP2Shell 취약점의 원인과 대응](https://blog.wypark.me/posts/php2shell-2026-rce) <sub>2026.10.28</sub>
 - [감시자를 감시하는 감시자를 감시하는 감시자를..](https://blog.wypark.me/posts/%EA%B0%90%EC%8B%9C%EC%9E%90%EB%A5%BC-%EA%B0%90%EC%8B%9C%ED%95%98%EB%8A%94-%EA%B0%90%EC%8B%9C%EC%9E%90%EB%A5%BC-%EA%B0%90%EC%8B%9C%ED%95%98%EB%8A%94-%EA%B0%90%EC%8B%9C%EC%9E%90%EB%A5%BC..) <sub>2026.09.05</sub>
-- [여보세요? 음성 통화 서버를 구축하고 싶습니다](https://blog.wypark.me/posts/%EC%97%AC%EB%B3%B4%EC%84%B8%EC%9A%94-%EC%9D%8C%EC%84%B1-%ED%86%B5%ED%99%94-%EC%84%9C%EB%B2%84%EB%A5%BC-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B3%A0-%EC%8B%B6%EC%8A%B5%EB%8B%88%EB%8B%A4) <sub>2026.07.11</sub>
-- [RTR (Refresh Token Rotation)](https://blog.wypark.me/posts/rtr-%28refresh-token-rotation%29) <sub>2026.01.02</sub>
 <!-- posts:end -->
 
 <br />
