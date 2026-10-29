@@ -55,9 +55,9 @@ OSM 기반 강남 지도에서 최대 10명이 함께 달리는 브라우저 레
 ### 최근 글
 
 <!-- posts:start -->
+- [Ghostty 1.4의 스크롤백과 SSH 개선](https://blog.wypark.me/posts/ghostty-1-4-scrollback-ssh) <sub>2026.10.29</sub>
 - [CPython JIT 개발 중단과 PEP 836 철회](https://blog.wypark.me/posts/cpython-jit-pep-836-withdrawal) <sub>2026.10.28</sub>
 - [PHP2Shell 취약점의 원인과 대응](https://blog.wypark.me/posts/php2shell-2026-rce) <sub>2026.10.28</sub>
-- [감시자를 감시하는 감시자를 감시하는 감시자를..](https://blog.wypark.me/posts/%EA%B0%90%EC%8B%9C%EC%9E%90%EB%A5%BC-%EA%B0%90%EC%8B%9C%ED%95%98%EB%8A%94-%EA%B0%90%EC%8B%9C%EC%9E%90%EB%A5%BC-%EA%B0%90%EC%8B%9C%ED%95%98%EB%8A%94-%EA%B0%90%EC%8B%9C%EC%9E%90%EB%A5%BC..) <sub>2026.09.05</sub>
 <!-- posts:end -->
 
 <br />
