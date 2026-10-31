@@ -55,9 +55,9 @@ OSM 기반 강남 지도에서 최대 10명이 함께 달리는 브라우저 레
 ### 최근 글
 
 <!-- posts:start -->
+- [Cursor의 Claude Code 확장 변조와 SSH 백도어](https://blog.wypark.me/posts/cursor-claude-code-extension-ssh-backdoor) <sub>2026.10.31</sub>
 - [Mistral Large 4 가중치 공개와 자체 호스팅 조건](https://blog.wypark.me/posts/mistral-large-4-open-weights-self-hosting) <sub>2026.10.30</sub>
 - [Ghostty 1.4의 스크롤백과 SSH 개선](https://blog.wypark.me/posts/ghostty-1-4-scrollback-ssh) <sub>2026.10.29</sub>
-- [CPython JIT 개발 중단과 PEP 836 철회](https://blog.wypark.me/posts/cpython-jit-pep-836-withdrawal) <sub>2026.10.28</sub>
 <!-- posts:end -->
 
 <br />
