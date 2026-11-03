@@ -55,9 +55,9 @@ OSM 기반 강남 지도에서 최대 10명이 함께 달리는 브라우저 레
 ### 최근 글
 
 <!-- posts:start -->
+- [Cloudflare의 DNS 설정 배포 개선](https://blog.wypark.me/posts/cloudflare-dns-targeted-zone-builds) <sub>2026.11.03</sub>
 - [AI 코딩 에이전트의 프레임워크별 구현 비용](https://blog.wypark.me/posts/ai-coding-agent-framework-cost-benchmark) <sub>2026.11.02</sub>
 - [HackerTube의 댓글 기반 영상 추천](https://blog.wypark.me/posts/hackertube-hacker-news-video-recommendations) <sub>2026.11.01</sub>
-- [Cursor의 Claude Code 확장 변조와 SSH 백도어](https://blog.wypark.me/posts/cursor-claude-code-extension-ssh-backdoor) <sub>2026.10.31</sub>
 <!-- posts:end -->
 
 <br />
