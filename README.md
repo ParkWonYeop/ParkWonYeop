@@ -55,9 +55,9 @@ OSM 기반 강남 지도에서 최대 10명이 함께 달리는 브라우저 레
 ### 최근 글
 
 <!-- posts:start -->
+- [Go JSON v2의 기본값과 API 호환성](https://blog.wypark.me/posts/go-json-v2-defaults-api-compatibility) <sub>2026.11.05</sub>
 - [Safari의 자동 다크 모드와 CSS 색상 설정](https://blog.wypark.me/posts/safari-adaptive-dark-mode-css-color-scheme) <sub>2026.11.04</sub>
 - [Cloudflare의 DNS 설정 배포 개선](https://blog.wypark.me/posts/cloudflare-dns-targeted-zone-builds) <sub>2026.11.03</sub>
-- [AI 코딩 에이전트의 프레임워크별 구현 비용](https://blog.wypark.me/posts/ai-coding-agent-framework-cost-benchmark) <sub>2026.11.02</sub>
 <!-- posts:end -->
 
 <br />
