@@ -55,9 +55,9 @@ OSM 기반 강남 지도에서 최대 10명이 함께 달리는 브라우저 레
 ### 최근 글
 
 <!-- posts:start -->
+- [Asahi Linux의 게임 실행과 4KiB 페이지 호환성](https://blog.wypark.me/posts/asahi-linux-gaming-per-process-page-size) <sub>2026.11.08</sub>
 - [Discord의 Rust 전환과 데스크톱 앱 구조](https://blog.wypark.me/posts/discord-rust-desktop-client-gpui) <sub>2026.11.07</sub>
 - [Alpine OpenSSH의 비밀번호 인증 우회와 수정 범위](https://blog.wypark.me/posts/alpine-openssh-password-authentication-bypass) <sub>2026.11.06</sub>
-- [Go JSON v2의 기본값과 API 호환성](https://blog.wypark.me/posts/go-json-v2-defaults-api-compatibility) <sub>2026.11.05</sub>
 <!-- posts:end -->
 
 <br />
