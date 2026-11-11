@@ -55,9 +55,9 @@ OSM 기반 강남 지도에서 최대 10명이 함께 달리는 브라우저 레
 ### 최근 글
 
 <!-- posts:start -->
+- [HTML dialog와 popover로 만드는 안내창](https://blog.wypark.me/posts/html-dialog-popover-native-overlays) <sub>2026.11.11</sub>
 - [Replit의 microVM 샌드박스 구조](https://blog.wypark.me/posts/replit-microvm-sandbox-isolation) <sub>2026.11.10</sub>
 - [AI 에이전트의 기억 파일 관리](https://blog.wypark.me/posts/ai-agent-memory-files-and-updates) <sub>2026.11.09</sub>
-- [Asahi Linux의 게임 실행과 4KiB 페이지 호환성](https://blog.wypark.me/posts/asahi-linux-gaming-per-process-page-size) <sub>2026.11.08</sub>
 <!-- posts:end -->
 
 <br />
